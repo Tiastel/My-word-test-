@@ -1428,7 +1428,7 @@ const defaultWords = [
     { word: "immaculate", meanings: ["결점이 없는", "순결한", "아주 깨끗한"] },
     { word: "imminent", meanings: ["임박한", "촉박한", "곧 일어날 듯한"] },
     { word: "immolate", meanings: ["제물로 바치다", "희생하다"] },
-    { word: "immune", meanings: ["면역성이 있는", "면제되는", "영향을 받지 않는"] ] },
+    { word: "immune", meanings: ["면역성이 있는", "면제되는", "영향을 받지 않는"] },
     { word: "immutable", meanings: ["불변의", "바꿀 수 없는", "변경할 수 없는"] },
     { word: "impair", meanings: ["손상시키다", "약화시키다", "해치다"] },
     { word: "impale", meanings: ["찌르다", "꽂다", "꼬챙이로 꿰뚫다"] },
