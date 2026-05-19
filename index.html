@@ -187,6 +187,13 @@
             const savedManage = localStorage.getItem('mainWordManageStore');
             if (savedManage) {
                 mainManageList = JSON.parse(savedManage);
+                
+                // ★ 핵심 수정 부분: words.js에 등록된 단어 개수가 브라우저가 기억하는 개수보다 많으면,
+                // 새 버전으로 판단하고 강제로 캐시를 엎어버립니다!
+                if (typeof defaultWords !== 'undefined' && defaultWords.length > mainManageList.length) {
+                    mainManageList = [...defaultWords];
+                    localStorage.setItem('mainWordManageStore', JSON.stringify(mainManageList));
+                }
             } else {
                 mainManageList = typeof defaultWords !== 'undefined' ? [...defaultWords] : [];
                 localStorage.setItem('mainWordManageStore', JSON.stringify(mainManageList));
@@ -234,9 +241,6 @@
         renderBookTable(); 
     }
 
-    // =====================================
-    // 📖 내 단어장 로직
-    // =====================================
     function renderBookTable() {
         const tbody = document.getElementById('book-body');
         tbody.innerHTML = '';
@@ -286,9 +290,6 @@
         }
     }
 
-    // =====================================
-    // ⚙️ 단어 추가 및 변경 로직
-    // =====================================
     function renderManageTable() {
         const tbody = document.getElementById('manage-body');
         tbody.innerHTML = '';
@@ -325,9 +326,6 @@
         renderManageTable();
     }
 
-    // =====================================
-    // ★ 교정된 무작위 셔플 알고리즘 (Fisher-Yates) ★
-    // =====================================
     function shuffleArray(array) {
         for (let i = array.length - 1; i > 0; i--) {
             const j = Math.floor(Math.random() * (i + 1));
@@ -342,7 +340,6 @@
         tbody.innerHTML = '';
         document.getElementById('score-board').innerText = '';
 
-        // 깊은 복사 후 완벽하게 무작위로 섞어서 문제 추출
         let shuffled = shuffleArray(JSON.parse(JSON.stringify(wordData)));
         const testCount = Math.min(QUESTION_COUNT, shuffled.length);
         currentQuestions = shuffled.slice(0, testCount);
