@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>Daily word test</title>
+    <style>
+        body { 
+            font-family: 'Malgun Gothic', sans-serif; 
+            background: linear-gradient(135deg, #e0c3fc 0%, #8ec5fc 100%);
+            padding: 15px; display: flex; justify-content: center; margin: 0; height: 100vh; box-sizing: border-box; 
+        }
+        
+        /* ★ 전체 화면 너비를 900px -> 1200px로 대폭 확장하여 깔끔하게 정렬 ★ */
+        .container { 
+            background: rgba(255, 255, 255, 0.9); backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3); padding: 25px; border-radius: 15px; 
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1); width: 100%; max-width: 1200px; max-height: 95vh; display: flex; flex-direction: column; 
+        }
+        
+        .nav-bar { display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #555; padding-bottom: 12px; margin-bottom: 20px; flex-shrink: 0; }
+        h1 { margin: 0; font-size: 24px; color: #2c3e50; font-weight: 900; }
+        .nav-menus { display: flex; gap: 8px; }
+        .nav-btn { background-color: #2c3e50; color: white; border: none; padding: 10px 15px; border-radius: 6px; cursor: pointer; font-weight: bold; font-size: 14px; transition: 0.2s; }
+        .nav-btn:hover { background-color: #1a252f; transform: translateY(-2px); }
+        .nav-btn-secondary { background-color: #6c757d; }
+        .nav-btn-secondary:hover { background-color: #5a6268; }
+
+        #score-board { text-align: center; font-size: 18px; font-weight: bold; margin-bottom: 15px; color: #2980b9; flex-shrink: 0; }
+        
+        /* 뷰 영역들 */
+        #test-view, #book-view, #note-view, #manage-view { display: flex; flex-direction: column; flex-grow: 1; min-height: 0; }
+        
+        .table-container { flex-grow: 1; overflow-y: auto; border: 1px solid #ddd; border-radius: 8px; margin-bottom: 15px; background: white; }
+        table { width: 100%; border-collapse: collapse; }
+        th, td { border-bottom: 1px solid #eee; border-right: 1px solid #eee; padding: 10px 15px; text-align: center; vertical-align: middle; }
+        th { background-color: #f1f3f5; position: sticky; top: 0; z-index: 1; font-size: 15px; color: #333; border-bottom: 2px solid #ddd; }
+        td { font-size: 15px; }
+        
+        input[type="text"] { width: 92%; padding: 8px; border: 1px solid #ccc; border-radius: 5px; text-align: center; font-size: 15px; background: #fafafa; }
+        input[type="text"]:focus { background: #fff; border-color: #8ec5fc; outline: none; box-shadow: 0 0 5px rgba(142, 197, 252, 0.5); }
+        
+        .result-text { font-size: 14px; margin-top: 5px; display: block; font-weight: bold; word-break: keep-all; }
+        .correct { color: #27ae60; }
+        .incorrect { color: #007bff; } /* 채점 오답 시 노출되는 밝은 파란색 정답 */
+        
+        .concealed { background-color: #2c3e50 !important; color: #2c3e50 !important; border-radius: 6px; cursor: pointer; user-select: none; transition: all 0.3s ease; }
+        .concealed:hover { background-color: #ecf0f1 !important; color: #007bff !important; }
+
+        .btn-group { display: flex; justify-content: center; gap: 15px; margin-top: 10px; flex-shrink: 0; }
+        button { padding: 12px 25px; font-size: 15px; border: none; border-radius: 6px; cursor: pointer; color: white; font-weight: bold; transition: 0.2s; }
+        .btn-submit { background-color: #27ae60; }
+        .btn-submit:hover { background-color: #219a52; transform: translateY(-2px); }
+        .btn-reset { background-color: #e74c3c; }
+        .btn-reset:hover { background-color: #c0392b; }
+        .btn-warning { background-color: #f39c12; }
+        .btn-warning:hover { background-color: #d68910; }
+        .hidden { display: none !important; }
+
+        /* 기능 버튼 스타일 */
+        .input-group { display: flex; gap: 10px; margin-bottom: 15px; flex-shrink: 0; }
+        .input-group input { flex-grow: 1; border: 1px solid #ccc; padding: 12px; border-radius: 5px; font-size: 15px;}
+        .btn-delete { background-color: #e74c3c; color: white; border: none; padding: 8px 14px; border-radius: 4px; font-size: 13px; cursor: pointer; transition: 0.2s;}
+        .btn-delete:hover { background-color: #c0392b; }
+        .btn-edit { background-color: #f39c12; color: white; border: none; padding: 8px 14px; border-radius: 4px; font-size: 13px; cursor: pointer; transition: 0.2s; margin-right: 5px; }
+        .btn-edit:hover { background-color: #d68910; }
+        .btn-add-book { background-color: #2980b9; color: white; border: none; padding: 8px 12px; border-radius: 4px; font-size: 13px; cursor: pointer; transition: 0.2s; font-weight: bold; }
+        .btn-add-book:hover { background-color: #1f618d; }
+    </style>
+
+    <script src="words.js" charset="UTF-8"></script>
+</head>
+<body>
+
+<div class="container">
+    <div class="nav-bar">
+        <h1 id="main-title">Daily word test 📝</h1>
+        <div class="nav-menus">
+            <button id="toggle-meaning-btn" class="nav-btn nav-btn-secondary hidden" onclick="toggleMeanings()">뜻 가리기 ⬛</button>
+            <button class="nav-btn" onclick="switchView('test')">📝 시험 보기</button>
+            <button class="nav-btn" style="background-color: #2980b9;" onclick="switchView('book')">📖 내 단어장</button>
+            <button class="nav-btn" onclick="switchView('note')">📒 오답 노트</button>
+            <button class="nav-btn" style="background-color: #8e44ad;" onclick="switchView('manage')">⚙️ 단어 추가 및 변경</button>
+        </div>
+    </div>
+
+    <div id="test-view">
+        <div id="score-board"></div>
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr><th style="width: 8%;">NO</th><th style="width: 25%;">단어 (Word)</th><th style="width: 67%;">뜻 (Meaning)</th></tr>
+                </thead>
+                <tbody id="test-body"></tbody>
+            </table>
+        </div>
+        <div class="btn-group">
+            <button class="btn-submit" id="btn-grade" onclick="gradeTest()">채점하기</button>
+            <button class="btn-reset" onclick="startNewTest()">새로운 문제 풀기</button>
+        </div>
+    </div>
+
+    <div id="book-view" class="hidden">
+        <div style="text-align: center; margin-bottom: 15px; color: #333;">
+            <strong style="font-size: 15px;">나만의 단어 보관소입니다. 가려진 뜻에 마우스를 올리면 정답이 보입니다. (총 <span id="book-count" style="color: #2980b9; font-weight: bold;">0</span>개)</strong>
+        </div>
+        
+        <div class="input-group">
+            <input type="text" id="book-new-word" placeholder="단어장에 직접 추가할 영단어">
+            <input type="text" id="book-new-meanings" placeholder="뜻 (쉼표로 구분)">
+            <button class="btn-submit" style="padding: 10px 25px; background-color: #2980b9;" onclick="addWordToBookDirect()">단어장 등록</button>
+        </div>
+
+        <div class="table-container" style="flex-grow: 1;">
+            <table>
+                <thead>
+                    <tr><th style="width: 8%;">NO</th><th style="width: 25%;">단어</th><th style="width: 52%;">뜻</th><th style="width: 15%;">관리</th></tr>
+                </thead>
+                <tbody id="book-body"></tbody>
+            </table>
+        </div>
+    </div>
+
+    <div id="note-view" class="hidden">
+        <div style="text-align: center; margin-bottom: 15px; color: #555;"><strong style="font-size: 15px;">틀린 단어장입니다. 가려진 뜻에 마우스를 올리면 정답이 보입니다.</strong></div>
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr><th style="width: 8%;">NO</th><th style="width: 25%;">단어 (Word)</th><th style="width: 52%;">정답 (Meaning)</th><th style="width: 15%;">단어장</th></tr>
+                </thead>
+                <tbody id="note-body"></tbody>
+            </table>
+        </div>
+        <div class="btn-group">
+            <button class="btn-submit" onclick="startIncorrectTest()">오답만 다시 풀기</button>
+            <button class="btn-warning" onclick="clearIncorrectNote()">오답노트 초기화</button>
+        </div>
+    </div>
+
+    <div id="manage-view" class="hidden">
+        <div style="text-align: center; margin-bottom: 15px; color: #333;">
+            <strong style="font-size: 15px;">시험에 출제되는 전체 단어 풀을 직접 추가, 수정, 삭제하는 공간입니다. (총 <span id="manage-count" style="color: #8e44ad; font-weight: bold;">0</span>개)</strong>
+        </div>
+
+        <div class="input-group">
+            <input type="text" id="manage-new-word" placeholder="시험에 새로 추가할 영단어">
+            <input type="text" id="manage-new-meanings" placeholder="뜻 (쉼표로 구분)">
+            <button class="btn-submit" style="padding: 10px 25px; background-color: #8e44ad;" onclick="addWordToManage()">전체 목록에 추가</button>
+        </div>
+
+        <div class="table-container" style="flex-grow: 1;">
+            <table>
+                <thead>
+                    <tr><th style="width: 8%;">NO</th><th style="width: 25%;">단어</th><th style="width: 52%;">뜻</th><th style="width: 15%;">관리</th></tr>
+                </thead>
+                <tbody id="manage-body"></tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<script>
+    const synonymGroups = [
+        ["중지", "중단", "정지", "그만", "멈춤", "끝내"],
+        ["명백", "명확", "분명", "확실", "뚜렷", "해명"],
+        ["감소", "하락", "축소", "줄어", "감퇴", "쇠퇴"],
+        ["증가", "상승", "확대", "늘어", "오름", "급증"],
+        ["버리", "포기", "단념", "저버리", "유기"],
+        ["혐오", "미워", "싫어", "증오", "역겹", "경멸"],
+        ["제공", "주다", "부여", "수여", "공급", "지급"],
+        ["요약", "단축", "줄이", "생략", "축약"]
+    ];
+
+    let currentQuestions = [];
+    const QUESTION_COUNT = 30;
+    let isMeaningHidden = false; 
+    let incorrectWords = [];
+    let myBookList = [];       
+    let mainManageList = [];   
+
+    window.onload = function() {
+        try { 
+            const parsed = JSON.parse(localStorage.getItem('incorrectWords'));
+            if (Array.isArray(parsed)) incorrectWords = parsed;
+        } catch(e) {}
+
+        try {
+            const savedBook = localStorage.getItem('userCustomBookStore');
+            if (savedBook) myBookList = JSON.parse(savedBook);
+        } catch(e) {}
+
+        try {
+            const savedManage = localStorage.getItem('mainWordManageStore');
+            if (savedManage) {
+                mainManageList = JSON.parse(savedManage);
+            } else {
+                mainManageList = typeof defaultWords !== 'undefined' ? [...defaultWords] : [];
+                localStorage.setItem('mainWordManageStore', JSON.stringify(mainManageList));
+            }
+        } catch(e) {
+            mainManageList = typeof defaultWords !== 'undefined' ? [...defaultWords] : [];
+        }
+
+        startNewTest();
+    };
+
+    function switchView(viewName) {
+        document.getElementById('test-view').classList.add('hidden');
+        document.getElementById('book-view').classList.add('hidden');
+        document.getElementById('note-view').classList.add('hidden');
+        document.getElementById('manage-view').classList.add('hidden');
+        document.getElementById('toggle-meaning-btn').classList.add('hidden');
+
+        if (viewName === 'test') {
+            document.getElementById('test-view').classList.remove('hidden');
+            document.getElementById('main-title').innerText = 'Daily word test 📝';
+        } else if (viewName === 'book') {
+            document.getElementById('book-view').classList.remove('hidden');
+            document.getElementById('toggle-meaning-btn').classList.remove('hidden'); 
+            document.getElementById('main-title').innerText = '나만의 보관함 📖';
+            renderBookTable();
+        } else if (viewName === 'note') {
+            document.getElementById('note-view').classList.remove('hidden');
+            document.getElementById('toggle-meaning-btn').classList.remove('hidden');
+            document.getElementById('main-title').innerText = '나만의 오답노트 📒';
+            renderIncorrectNote();
+        } else if (viewName === 'manage') {
+            document.getElementById('manage-view').classList.remove('hidden');
+            // ★ 메뉴 제목을 단어 추가 및 변경으로 설정 ★
+            document.getElementById('main-title').innerText = '단어 추가 및 변경 ⚙️';
+            renderManageTable();
+        }
+    }
+
+    function toggleMeanings() {
+        isMeaningHidden = !isMeaningHidden;
+        const btn = document.getElementById('toggle-meaning-btn');
+        btn.innerText = isMeaningHidden ? '뜻 보이기 👁️' : '뜻 가리기 ⬛';
+        
+        renderIncorrectNote();
+        renderBookTable(); 
+    }
+
+    // =====================================
+    // 📖 내 단어장 로직
+    // =====================================
+    function renderBookTable() {
+        const tbody = document.getElementById('book-body');
+        tbody.innerHTML = '';
+        document.getElementById('book-count').innerText = myBookList.length;
+
+        if (myBookList.length === 0) {
+            tbody.innerHTML = `<tr><td colspan="4" style="padding: 40px; color: #888;">보관함이 비어있습니다. 오답노트에서 추가하거나 등록해 보세요!</td></tr>`;
+            return;
+        }
+
+        myBookList.forEach((item, index) => {
+            const safeMeanings = Array.isArray(item.meanings) ? item.meanings : [item.meanings];
+            const tr = document.createElement('tr');
+            
+            const hideClass = isMeaningHidden ? 'concealed' : ''; 
+
+            tr.innerHTML = `
+                <td>${index + 1}</td>
+                <td style="font-weight: bold; color: #2c3e50; font-size: 16px;">${item.word}</td>
+                <td style="padding: 10px;">
+                    <div class="${hideClass}" style="display:inline-block; padding: 6px 10px; width: 100%; box-sizing: border-box; color: #007bff; font-weight: bold;">${safeMeanings.join(', ')}</div>
+                </td>
+                <td><button class="btn-delete" onclick="deleteFromBook(${index})">삭제</button></td>
+            `;
+            tbody.appendChild(tr);
+        });
+    }
+
+    function addWordToBookDirect() {
+        const wordInput = document.getElementById('book-new-word').value.trim();
+        const meaningsInput = document.getElementById('book-new-meanings').value.trim();
+        if (!wordInput || !meaningsInput) return alert("영단어와 뜻을 모두 입력해주세요!");
+        
+        const meaningsArray = meaningsInput.split(',').map(s => s.trim()).filter(s => s.length > 0);
+        myBookList.push({ word: wordInput, meanings: meaningsArray });
+        localStorage.setItem('userCustomBookStore', JSON.stringify(myBookList));
+        
+        document.getElementById('book-new-word').value = '';
+        document.getElementById('book-new-meanings').value = '';
+        renderBookTable();
+    }
+
+    function deleteFromBook(index) {
+        if (confirm(`'${myBookList[index].word}' 단어를 보관함에서 삭제할까요?`)) {
+            myBookList.splice(index, 1);
+            localStorage.setItem('userCustomBookStore', JSON.stringify(myBookList));
+            renderBookTable();
+        }
+    }
+
+    // =====================================
+    // ⚙️ 단어 추가 및 변경 로직
+    // =====================================
+    function renderManageTable() {
+        const tbody = document.getElementById('manage-body');
+        tbody.innerHTML = '';
+        document.getElementById('manage-count').innerText = mainManageList.length;
+
+        mainManageList.forEach((item, index) => {
+            const safeMeanings = Array.isArray(item.meanings) ? item.meanings : [item.meanings];
+            const tr = document.createElement('tr');
+            tr.id = `manage-row-${index}`;
+            tr.innerHTML = `
+                <td>${index + 1}</td>
+                <td style="font-weight: bold; color: #333; font-size: 16px;">${item.word}</td>
+                <td style="color: #007bff; font-weight: bold;">${safeMeanings.join(', ')}</td>
+                <td>
+                    <button class="btn-edit" onclick="editManageWord(${index})">수정</button>
+                    <button class="btn-delete" onclick="deleteFromManage(${index})">삭제</button>
+                </td>
+            `;
+            tbody.appendChild(tr);
+        });
+    }
+
+    function addWordToManage() {
+        const wordInput = document.getElementById('manage-new-word').value.trim();
+        const meaningsInput = document.getElementById('manage-new-meanings').value.trim();
+        if (!wordInput || !meaningsInput) return alert("영단어와 뜻을 모두 입력해주세요!");
+
+        const meaningsArray = meaningsInput.split(',').map(s => s.trim()).filter(s => s.length > 0);
+        mainManageList.push({ word: wordInput, meanings: meaningsArray });
+        localStorage.setItem('mainWordManageStore', JSON.stringify(mainManageList));
+
+        document.getElementById('manage-new-word').value = '';
+        document.getElementById('manage-new-meanings').value = '';
+        renderManageTable();
+    }
+
+    function deleteFromManage(index) {
+        if (confirm(`'${mainManageList[index].word}' 단어를 전체 출제 풀에서 삭제할까요?`)) {
+            mainManageList.splice(index, 1);
+            localStorage.setItem('mainWordManageStore', JSON.stringify(mainManageList));
+            renderManageTable();
+        }
+    }
+
+    function editManageWord(index) {
+        const tr = document.getElementById(`manage-row-${index}`);
+        const item = mainManageList[index];
+        const safeMeanings = Array.isArray(item.meanings) ? item.meanings.join(', ') : item.meanings;
+
+        tr.innerHTML = `
+            <td>${index + 1}</td>
+            <td><input type="text" id="edit-manage-word-${index}" value="${item.word}" style="width: 90%; padding: 8px;"></td>
+            <td><input type="text" id="edit-manage-meanings-${index}" value="${safeMeanings}" style="width: 90%; padding: 8px;"></td>
+            <td>
+                <button class="btn-submit" style="padding: 8px 12px; font-size: 13px; margin-right: 5px;" onclick="saveManageWord(${index})">저장</button>
+                <button class="btn-reset" style="padding: 8px 12px; font-size: 13px;" onclick="renderManageTable()">취소</button>
+            </td>
+        `;
+    }
+
+    function saveManageWord(index) {
+        const newWord = document.getElementById(`edit-manage-word-${index}`).value.trim();
+        const newMeaningsStr = document.getElementById(`edit-manage-meanings-${index}`).value.trim();
+        if (!newWord || !newMeaningsStr) return alert("단어와 뜻을 입력해주세요!");
+
+        const newMeaningsArray = newMeaningsStr.split(',').map(s => s.trim()).filter(s => s.length > 0);
+        mainManageList[index] = { word: newWord, meanings: newMeaningsArray };
+        localStorage.setItem('mainWordManageStore', JSON.stringify(mainManageList));
+        renderManageTable();
+    }
+
+    // =====================================
+    // 시험 및 오답노트 처리 로직
+    // =====================================
+    function startTestWithData(wordData) {
+        if (!wordData || wordData.length === 0) return;
+        const tbody = document.getElementById('test-body');
+        tbody.innerHTML = '';
+        document.getElementById('score-board').innerText = '';
+
+        const testCount = Math.min(QUESTION_COUNT, wordData.length);
+        currentQuestions = [...wordData].sort(() => Math.random() - 0.5).slice(0, testCount);
+
+        currentQuestions.forEach((q, index) => {
+            const tr = document.createElement('tr');
+            tr.innerHTML = `
+                <td>${index + 1}</td>
+                <td style="font-weight: bold; font-size: 16px; color: #333;">${q.word}</td>
+                <td>
+                    <input type="text" id="answer-${index}" autocomplete="off">
+                    <span id="result-${index}" class="result-text"></span>
+                </td>
+            `;
+            tbody.appendChild(tr);
+        });
+        document.querySelector('#test-view .table-container').scrollTop = 0;
+    }
+
+    function startNewTest() {
+        if (mainManageList.length === 0) return alert("출제할 단어 데이터가 없습니다! 단어 추가 및 변경 탭에서 등록해주세요.");
+        startTestWithData(mainManageList);
+    }
+
+    function startIncorrectTest() {
+        if (incorrectWords.length === 0) return alert("저장된 오답이 없습니다!");
+        switchView('test');
+        document.getElementById('main-title').innerText = '오답 집중 테스트 🔥';
+        startTestWithData(incorrectWords);
+    }
+
+    function addNoteToBook(index) {
+        const item = incorrectWords[index];
+        const exists = myBookList.some(w => w.word === item.word);
+        if (exists) return alert(`'${item.word}' 은(는) 이미 내 단어장에 보관되어 있습니다.`);
+        
+        myBookList.push({ word: item.word, meanings: item.meanings });
+        localStorage.setItem('userCustomBookStore', JSON.stringify(myBookList));
+        alert(`'${item.word}' 단어를 내 단어장에 추가했습니다!`);
+    }
+
+    function renderIncorrectNote() {
+        const tbody = document.getElementById('note-body');
+        tbody.innerHTML = '';
+        if (incorrectWords.length === 0) {
+            tbody.innerHTML = `<tr><td colspan="4" style="padding: 40px; color: #888;">오답노트가 비어있습니다.</td></tr>`;
+            return;
+        }
+        incorrectWords.forEach((q, index) => {
+            const safeMeanings = Array.isArray(q.meanings) ? q.meanings : [q.meanings];
+            const tr = document.createElement('tr');
+            const hideClass = isMeaningHidden ? 'concealed' : ''; 
+            tr.innerHTML = `
+                <td>${index + 1}</td>
+                <td style="font-weight: bold; color: #c0392b; font-size: 16px;">${q.word}</td>
+                <td style="padding: 10px;">
+                    <div class="${hideClass}" style="display:inline-block; padding: 6px 10px; width: 100%; box-sizing: border-box; color: #007bff; font-weight: bold;">${safeMeanings.join(', ')}</div>
+                </td>
+                <td><button class="btn-add-book" onclick="addNoteToBook(${index})">➕ 단어장</button></td>
+            `;
+            tbody.appendChild(tr);
+        });
+    }
+
+    function clearIncorrectNote() {
+        if (confirm("정말로 오답노트를 모두 지우시겠습니까?")) {
+            incorrectWords = [];
+            try { localStorage.removeItem('incorrectWords'); } catch(e) {}
+            renderIncorrectNote();
+        }
+    }
+
+    // 채점
+    function getEditDistance(a, b) {
+        if(a.length === 0) return b.length;
+        if(b.length === 0) return a.length;
+        const matrix = [];
+        for(let i = 0; i <= b.length; i++) matrix[i] = [i];
+        for(let j = 0; j <= a.length; j++) matrix[0][j] = j;
+        for(let i = 1; i <= b.length; i++){
+            for(let j = 1; j <= a.length; j++){
+                if(b.charAt(i-1) == a.charAt(j-1)) matrix[i][j] = matrix[i-1][j-1];
+                else matrix[i][j] = Math.min(matrix[i-1][j-1] + 1, Math.min(matrix[i][j-1] + 1, matrix[i-1][j] + 1));
+            }
+        }
+        return matrix[b.length][a.length];
+    }
+
+    function isFlexibleMatch(userInput, meanings) {
+        const userParts = userInput.split(/[,/]+/).map(s => s.trim()).filter(s => s.length > 0);
+        if (userParts.length === 0) return false;
+        return userParts.some(part => {
+            const cleanInput = part.replace(/\s+/g, '').replace(/(하다|히|하게|한|스러운|되다|시키다|할수있는|적인|의|을|를|됨|성있는|성이있는|있는|인)$/g, '');
+            let searchRoots = [cleanInput];
+            synonymGroups.forEach(group => {
+                if (group.some(g => cleanInput.includes(g) || g.includes(cleanInput))) searchRoots = searchRoots.concat(group);
+            });
+            return meanings.some(meaning => {
+                const cleanMeaning = String(meaning).replace(/\s+/g, '').replace(/(하다|히|하게|한|스러운|되다|시키다|할수있는|적인|의|을|를|됨|성있는|성이있는|있는|인)$/g, '');
+                return searchRoots.some(sr => {
+                    if (cleanMeaning === cleanInput || cleanMeaning === sr || cleanMeaning.includes(sr)) return true;
+                    if (sr.length >= 2 && getEditDistance(cleanMeaning, sr) <= 1) return true;
+                    if (cleanInput.length >= 2 && getEditDistance(cleanMeaning, cleanInput) <= 1) return true;
+                    return false;
+                });
+            });
+        });
+    }
+
+    function gradeTest() {
+        let score = 0;
+        currentQuestions.forEach((q, index) => {
+            const inputElement = document.getElementById(`answer-${index}`);
+            const resultElement = document.getElementById(`result-${index}`);
+            const safeMeanings = Array.isArray(q.meanings) ? q.meanings : [q.meanings];
+
+            if (isFlexibleMatch(inputElement.value, safeMeanings)) {
+                resultElement.textContent = "⭕ 정답";
+                resultElement.className = "result-text correct";
+                inputElement.style.borderColor = "#27ae60";
+                score++;
+            } else {
+                resultElement.textContent = `정답: ${safeMeanings.join(', ')}`;
+                resultElement.className = "result-text incorrect"; 
+                inputElement.style.borderColor = "#007bff"; 
+                
+                if (!incorrectWords.some(n => n.word === q.word)) {
+                    incorrectWords.push({ word: q.word, meanings: safeMeanings });
+                }
+            }
+        });
+        
+        try { localStorage.setItem('incorrectWords', JSON.stringify(incorrectWords)); } catch(e) {}
+        document.getElementById('score-board').innerText = `결과: ${score} / ${currentQuestions.length} 점`;
+        document.querySelector('#test-view .table-container').scrollTop = 0;
+    }
+</script>
+
+</body>
+</html>
