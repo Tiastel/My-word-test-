@@ -34,7 +34,10 @@
         
         input[type="text"] { width: 92%; padding: 8px; border: 1px solid #ccc; border-radius: 5px; text-align: center; font-size: 15px; background: #fafafa; }
         input[type="text"]:focus { background: #fff; border-color: #8ec5fc; outline: none; box-shadow: 0 0 5px rgba(142, 197, 252, 0.5); }
-        input[type="text"]:disabled { background: #e8f8f5; color: #27ae60; font-weight: bold; border-color: #27ae60; cursor: not-allowed; }
+        
+        /* 입력창 잠금 상태 디자인 (정답/오답 구분) */
+        input[type="text"]:disabled.is-correct { background: #e8f8f5; color: #27ae60; font-weight: bold; border-color: #27ae60; cursor: not-allowed; }
+        input[type="text"]:disabled.is-incorrect { background: #fdedec; color: #e74c3c; font-weight: bold; border-color: #e74c3c; cursor: not-allowed; }
         
         .result-text { font-size: 14px; margin-top: 5px; display: block; font-weight: bold; word-break: keep-all; }
         .correct { color: #27ae60; }
@@ -192,7 +195,6 @@
             if (savedBook) myBookList = JSON.parse(savedBook);
         } catch(e) {}
 
-        // 단어 관리 풀 로딩 (로컬스토리지에 수정한 내역이 있으면 그것을 우선, 없으면 words.js 사용)
         try {
             const savedManage = JSON.parse(localStorage.getItem('myManageList'));
             if (savedManage && savedManage.length > 0) {
@@ -245,7 +247,6 @@
         renderBookTable(); 
     }
 
-    /* === 내 단어장 로직 === */
     function renderBookTable() {
         const tbody = document.getElementById('book-body');
         tbody.innerHTML = '';
@@ -295,7 +296,6 @@
         }
     }
 
-    /* === 단어 관리(Manage) 로직: 추가/수정/삭제 === */
     function renderManageTable() {
         const tbody = document.getElementById('manage-body');
         tbody.innerHTML = '';
@@ -327,7 +327,7 @@
         if (!w || !m) return alert("단어와 뜻을 모두 입력해주세요.");
         
         const mArr = m.split(',').map(s => s.trim()).filter(s => s.length > 0);
-        mainManageList.unshift({ word: w, meanings: mArr }); // 맨 위에 추가
+        mainManageList.unshift({ word: w, meanings: mArr }); 
         saveManageList();
         renderManageTable();
         document.getElementById('manage-new-word').value = '';
@@ -366,7 +366,6 @@
         });
     }
 
-    /* === 시험 및 채점 로직 === */
     function shuffleArray(array) {
         let newArr = [...array];
         for (let i = newArr.length - 1; i > 0; i--) {
@@ -406,10 +405,8 @@
         startTestWithData(mainManageList);
     }
 
-    // 3번 기능: 현재 단어 그대로 위치만 재배치
     function retestCurrent() {
         if (currentQuestions.length === 0) return alert("현재 출제된 단어가 없습니다!");
-        // 화면에 있는 동일한 문제를 섞어서 다시 그림
         startTestWithData([...currentQuestions]);
         document.getElementById('score-board').innerText = '진행하던 단어들의 위치가 재배치되었습니다. 다시 풀어보세요!';
     }
@@ -498,52 +495,49 @@
         });
     }
 
-    // 2번 기능: 오답 재입력 로직 강화
+    // 채점 로직 완전 수정 (단발성 채점 및 오답 뜻 파란색 강조)
     function gradeTest() {
-        let score = 0;
         let total = currentQuestions.length;
-        let allDone = true;
 
         currentQuestions.forEach((q, index) => {
             const inputElement = document.getElementById(`answer-${index}`);
             const resultElement = document.getElementById(`result-${index}`);
             const safeMeanings = Array.isArray(q.meanings) ? q.meanings : [q.meanings];
 
-            // 이미 정답을 맞춰 잠긴 입력창은 건너뛰고 점수만 합산
-            if (inputElement.disabled) {
-                score++;
-                return;
-            }
+            // 이미 채점되어 비활성화된 칸은 무시
+            if (inputElement.disabled) return;
 
             if (isFlexibleMatch(inputElement.value, safeMeanings)) {
                 resultElement.textContent = "⭕ 정답";
                 resultElement.className = "result-text correct";
-                inputElement.style.borderColor = "#27ae60";
-                inputElement.disabled = true; // 정답 맞추면 수정 불가 처리(잠금)
-                score++;
+                inputElement.classList.add('is-correct');
+                inputElement.disabled = true; // 정답 칸 잠금
             } else {
-                resultElement.innerHTML = `❌ 오답 (정답: ${safeMeanings.join(', ')})`;
+                // 오답 시 텍스트 파란색으로 변경 및 안내 문구 삭제
+                resultElement.innerHTML = `❌ 오답 (정답: <span style="color: #007bff;">${safeMeanings.join(', ')}</span>)`;
                 resultElement.className = "result-text incorrect"; 
-                inputElement.style.borderColor = "#e74c3c"; 
-                inputElement.value = ''; // 오답일 경우 창을 비워줌
-                inputElement.placeholder = '정답 재입력 후 다시 채점'; // 재입력 유도
+                inputElement.classList.add('is-incorrect');
+                inputElement.disabled = true; // 오답 칸도 잠금 (재입력 불가)
 
                 // 오답노트 저장
                 if (!incorrectWords.some(n => n.word === q.word)) {
                     incorrectWords.push({ word: q.word, meanings: safeMeanings });
                 }
-                allDone = false;
             }
         });
         
         try { localStorage.setItem('incorrectWords', JSON.stringify(incorrectWords)); } catch(e) {}
         
-        if (allDone) {
-            document.getElementById('score-board').innerText = `결과: ${score} / ${total} 점 (완벽합니다!)`;
-        } else {
-            document.getElementById('score-board').innerText = `현재 점수: ${score} / ${total} 점 (빨간색 오답 칸에 올바른 뜻을 적고 채점하기를 다시 누르세요!)`;
-        }
-        
+        // 최종 점수 계산
+        let finalScore = 0;
+        currentQuestions.forEach((q, index) => {
+            const inputElement = document.getElementById(`answer-${index}`);
+            if (inputElement.classList.contains('is-correct')) {
+                finalScore++;
+            }
+        });
+
+        document.getElementById('score-board').innerText = `결과: ${finalScore} / ${total} 점`;
         document.querySelector('#test-view .table-container').scrollTop = 0;
     }
 </script>
