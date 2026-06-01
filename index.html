@@ -35,9 +35,9 @@
         input[type="text"] { width: 92%; padding: 8px; border: 1px solid #ccc; border-radius: 5px; text-align: center; font-size: 15px; background: #fafafa; }
         input[type="text"]:focus { background: #fff; border-color: #8ec5fc; outline: none; box-shadow: 0 0 5px rgba(142, 197, 252, 0.5); }
         
-        /* 입력창 잠금 상태 디자인 (정답/오답 구분) */
-        input[type="text"]:disabled.is-correct { background: #e8f8f5; color: #27ae60; font-weight: bold; border-color: #27ae60; cursor: not-allowed; }
-        input[type="text"]:disabled.is-incorrect { background: #fdedec; color: #e74c3c; font-weight: bold; border-color: #e74c3c; cursor: not-allowed; }
+        /* 채점 후 디자인 (잠금 효과 완전 제거, 자유롭게 입력 가능) */
+        input[type="text"].is-correct { background: #e8f8f5; color: #27ae60; font-weight: bold; border-color: #27ae60; }
+        input[type="text"].is-incorrect { background: #fdedec; color: #e74c3c; font-weight: bold; border-color: #e74c3c; }
         
         .result-text { font-size: 14px; margin-top: 5px; display: block; font-weight: bold; word-break: keep-all; }
         .correct { color: #27ae60; }
@@ -68,6 +68,7 @@
         .btn-add-book:hover { background-color: #1f618d; }
     </style>
 
+    <!-- 단어 데이터 파일 연결 -->
     <script src="words.js" charset="UTF-8"></script>
 </head>
 <body>
@@ -80,10 +81,11 @@
             <button class="nav-btn" onclick="switchView('test')">📝 시험 보기</button>
             <button class="nav-btn" style="background-color: #2980b9;" onclick="switchView('book')">📖 내 단어장</button>
             <button class="nav-btn" onclick="switchView('note')">📒 오답 노트</button>
-            <button class="nav-btn" style="background-color: #8e44ad;" onclick="switchView('manage')">⚙️ 단어 추가 및 변경</button>
+            <button class="nav-btn" style="background-color: #8e44ad;" onclick="switchView('manage')">⚙️ 단어 풀 관리</button>
         </div>
     </div>
 
+    <!-- 시험 보기 화면 -->
     <div id="test-view">
         <div id="score-board"></div>
         <div class="table-container">
@@ -101,6 +103,7 @@
         </div>
     </div>
 
+    <!-- 내 단어장 화면 -->
     <div id="book-view" class="hidden">
         <div style="text-align: center; margin-bottom: 15px; color: #333;">
             <strong style="font-size: 15px;">나만의 단어 보관소입니다. 가려진 뜻에 마우스를 올리면 정답이 보입니다. (총 <span id="book-count" style="color: #2980b9; font-weight: bold;">0</span>개)</strong>
@@ -122,6 +125,7 @@
         </div>
     </div>
 
+    <!-- 오답 노트 화면 -->
     <div id="note-view" class="hidden">
         <div style="text-align: center; margin-bottom: 15px; color: #555;"><strong style="font-size: 15px;">틀린 단어장입니다. 가려진 뜻에 마우스를 올리면 정답이 보입니다.</strong></div>
         <div class="table-container">
@@ -138,6 +142,7 @@
         </div>
     </div>
 
+    <!-- 단어 풀 열람 및 관리 화면 -->
     <div id="manage-view" class="hidden">
         <div style="text-align: center; margin-bottom: 15px; color: #333;">
             <strong style="font-size: 15px;">전체 단어 풀 관리 공간입니다. 검색, 추가, 수정, 삭제가 가능합니다. (총 <span id="manage-count" style="color: #8e44ad; font-weight: bold;">0</span>개)</strong>
@@ -201,6 +206,8 @@
                 mainManageList = savedManage;
             } else if (typeof defaultWords !== 'undefined') {
                 mainManageList = [...defaultWords];
+            } else if (typeof additionalWords !== 'undefined') { 
+                mainManageList = [...additionalWords]; // 예외 처리 (데이터 연결용)
             } else {
                 mainManageList = [];
             }
@@ -495,7 +502,7 @@
         });
     }
 
-    // 채점 로직 완전 수정 (단발성 채점 및 오답 뜻 파란색 강조)
+    // 채점 후 모든 칸에 글자 적을 수 있도록 제한 해제
     function gradeTest() {
         let total = currentQuestions.length;
 
@@ -504,21 +511,20 @@
             const resultElement = document.getElementById(`result-${index}`);
             const safeMeanings = Array.isArray(q.meanings) ? q.meanings : [q.meanings];
 
-            // 이미 채점되어 비활성화된 칸은 무시
-            if (inputElement.disabled) return;
-
+            // 사용자가 수정한 답안을 기반으로 계속 다시 채점 가능
             if (isFlexibleMatch(inputElement.value, safeMeanings)) {
                 resultElement.textContent = "⭕ 정답";
                 resultElement.className = "result-text correct";
                 inputElement.classList.add('is-correct');
-                inputElement.disabled = true; // 정답 칸 잠금
+                inputElement.classList.remove('is-incorrect');
             } else {
-                // 오답 시 텍스트 파란색으로 변경 및 안내 문구 삭제
                 resultElement.innerHTML = `❌ 오답 (정답: <span style="color: #007bff;">${safeMeanings.join(', ')}</span>)`;
                 resultElement.className = "result-text incorrect"; 
                 inputElement.classList.add('is-incorrect');
-                inputElement.disabled = true; // 오답 칸도 잠금 (재입력 불가)
-
+                inputElement.classList.remove('is-correct');
+                
+                // 내가 적은 오답을 지우지 않고 그대로 둡니다 (inputElement.value = ''; 코드 삭제됨)
+                
                 // 오답노트 저장
                 if (!incorrectWords.some(n => n.word === q.word)) {
                     incorrectWords.push({ word: q.word, meanings: safeMeanings });
@@ -528,7 +534,7 @@
         
         try { localStorage.setItem('incorrectWords', JSON.stringify(incorrectWords)); } catch(e) {}
         
-        // 최종 점수 계산
+        // 점수 계산 로직
         let finalScore = 0;
         currentQuestions.forEach((q, index) => {
             const inputElement = document.getElementById(`answer-${index}`);
