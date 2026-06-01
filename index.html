@@ -32,7 +32,6 @@
         th { background-color: #f1f3f5; position: sticky; top: 0; z-index: 1; font-size: 15px; color: #333; border-bottom: 2px solid #ddd; }
         td { font-size: 15px; }
         
-        /* 🚨 이 입력창 기본 디자인 하나만 남기고, 채점 후 색상 변하는 CSS는 아예 흔적도 없이 지웠습니다 🚨 */
         input[type="text"] { width: 92%; padding: 8px; border: 1px solid #ccc; border-radius: 5px; text-align: center; font-size: 15px; background: #fafafa; pointer-events: auto; }
         input[type="text"]:focus { background: #fff; border-color: #8ec5fc; outline: none; box-shadow: 0 0 5px rgba(142, 197, 252, 0.5); }
         
@@ -122,7 +121,7 @@
         <div class="table-container">
             <table>
                 <thead>
-                    <tr><th style="width: 8%;">NO</th><th style="width: 25%;">단어 (Word)</th><th style="width: 52%;">정답 (Meaning)</th><th style="width: 15%;">단어장</th></tr>
+                    <tr><th style="width: 8%;">NO</th><th style="width: 25%;">단어 (Word)</th><th style="width: 42%;">정답 (Meaning)</th><th style="width: 25%;">관리</th></tr>
                 </thead>
                 <tbody id="note-body"></tbody>
             </table>
@@ -418,6 +417,15 @@
         alert(`'${item.word}' 단어를 내 단어장에 추가했습니다!`);
     }
 
+    // ✨ [수정] 개별 삭제 기능 ✨
+    function deleteFromNote(index) {
+        if (confirm(`'${incorrectWords[index].word}' 단어를 오답노트에서 삭제할까요?`)) {
+            incorrectWords.splice(index, 1);
+            try { localStorage.setItem('incorrectWords', JSON.stringify(incorrectWords)); } catch(e) {}
+            renderIncorrectNote();
+        }
+    }
+
     function renderIncorrectNote() {
         const tbody = document.getElementById('note-body');
         tbody.innerHTML = '';
@@ -429,13 +437,17 @@
             const safeMeanings = Array.isArray(q.meanings) ? q.meanings : [q.meanings];
             const tr = document.createElement('tr');
             const hideClass = isMeaningHidden ? 'concealed' : ''; 
+            // ✨ [수정] 오답노트 표에 삭제 버튼 추가 ✨
             tr.innerHTML = `
                 <td>${index + 1}</td>
                 <td style="font-weight: bold; color: #c0392b; font-size: 16px;">${q.word}</td>
                 <td style="padding: 10px;">
                     <div class="${hideClass}" style="display:inline-block; padding: 6px 10px; width: 100%; box-sizing: border-box; color: #007bff; font-weight: bold;">${safeMeanings.join(', ')}</div>
                 </td>
-                <td><button class="btn-add-book" onclick="addNoteToBook(${index})">➕ 단어장</button></td>
+                <td>
+                    <button class="btn-add-book" onclick="addNoteToBook(${index})">➕ 단어장</button>
+                    <button class="btn-delete" style="margin-left: 5px;" onclick="deleteFromNote(${index})">삭제</button>
+                </td>
             `;
             tbody.appendChild(tr);
         });
@@ -497,7 +509,6 @@
             inputElement.disabled = false;
             inputElement.style.pointerEvents = 'auto';
 
-            // CSS를 통한 색상 변경 명령은 모두 삭제, 점수를 위한 꼬리표 클래스만 남김
             if (isFlexibleMatch(inputElement.value, safeMeanings)) {
                 resultElement.textContent = "⭕ 정답";
                 resultElement.className = "result-text correct";
@@ -505,7 +516,6 @@
             } else {
                 resultElement.innerHTML = `❌ 오답 (정답: <span style="color: #007bff;">${safeMeanings.join(', ')}</span>)`;
                 resultElement.className = "result-text incorrect"; 
-                // 오답일 경우 CSS 클래스 자체를 넣지 않음
                 
                 if (!incorrectWords.some(n => n.word === q.word)) {
                     incorrectWords.push({ word: q.word, meanings: safeMeanings });
@@ -518,7 +528,6 @@
         let finalScore = 0;
         currentQuestions.forEach((q, index) => {
             const inputElement = document.getElementById(`answer-${index}`);
-            // 점수 계산은 is-correct 꼬리표로 완벽하게 작동합니다
             if (inputElement.classList.contains('is-correct')) {
                 finalScore++;
             }
