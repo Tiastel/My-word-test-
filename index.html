@@ -32,12 +32,9 @@
         th { background-color: #f1f3f5; position: sticky; top: 0; z-index: 1; font-size: 15px; color: #333; border-bottom: 2px solid #ddd; }
         td { font-size: 15px; }
         
+        /* 🚨 이 입력창 기본 디자인 하나만 남기고, 채점 후 색상 변하는 CSS는 아예 흔적도 없이 지웠습니다 🚨 */
         input[type="text"] { width: 92%; padding: 8px; border: 1px solid #ccc; border-radius: 5px; text-align: center; font-size: 15px; background: #fafafa; pointer-events: auto; }
         input[type="text"]:focus { background: #fff; border-color: #8ec5fc; outline: none; box-shadow: 0 0 5px rgba(142, 197, 252, 0.5); }
-        
-        /* ✨ [수정된 부분] 배경색과 테두리 색상을 평소(#fafafa, #ccc)와 동일하게 통일 ✨ */
-        input[type="text"].is-correct { background: #fafafa; color: #27ae60; font-weight: bold; border-color: #ccc; }
-        input[type="text"].is-incorrect { background: #fafafa; color: #e74c3c; font-weight: bold; border-color: #ccc; }
         
         .result-text { font-size: 14px; margin-top: 5px; display: block; font-weight: bold; word-break: keep-all; }
         .correct { color: #27ae60; }
@@ -496,21 +493,19 @@
             const resultElement = document.getElementById(`result-${index}`);
             const safeMeanings = Array.isArray(q.meanings) ? q.meanings : [q.meanings];
 
-            // ✨ [수정된 부분] 입력창 무조건 자유롭게 타이핑 가능하도록 보장 ✨
             inputElement.readOnly = false;
             inputElement.disabled = false;
             inputElement.style.pointerEvents = 'auto';
 
+            // CSS를 통한 색상 변경 명령은 모두 삭제, 점수를 위한 꼬리표 클래스만 남김
             if (isFlexibleMatch(inputElement.value, safeMeanings)) {
                 resultElement.textContent = "⭕ 정답";
                 resultElement.className = "result-text correct";
-                inputElement.classList.add('is-correct');
-                inputElement.classList.remove('is-incorrect');
+                inputElement.classList.add('is-correct'); 
             } else {
                 resultElement.innerHTML = `❌ 오답 (정답: <span style="color: #007bff;">${safeMeanings.join(', ')}</span>)`;
                 resultElement.className = "result-text incorrect"; 
-                inputElement.classList.add('is-incorrect');
-                inputElement.classList.remove('is-correct');
+                // 오답일 경우 CSS 클래스 자체를 넣지 않음
                 
                 if (!incorrectWords.some(n => n.word === q.word)) {
                     incorrectWords.push({ word: q.word, meanings: safeMeanings });
@@ -523,6 +518,7 @@
         let finalScore = 0;
         currentQuestions.forEach((q, index) => {
             const inputElement = document.getElementById(`answer-${index}`);
+            // 점수 계산은 is-correct 꼬리표로 완벽하게 작동합니다
             if (inputElement.classList.contains('is-correct')) {
                 finalScore++;
             }
