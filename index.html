@@ -42,7 +42,7 @@
         .concealed { background-color: #2c3e50 !important; color: #2c3e50 !important; border-radius: 6px; cursor: pointer; user-select: none; transition: all 0.3s ease; }
         .concealed:hover { background-color: #ecf0f1 !important; color: #007bff !important; }
 
-        .btn-group { display: flex; justify-content: center; gap: 15px; margin-top: 10px; flex-shrink: 0; flex-wrap: wrap; }
+        .btn-group { display: flex; justify-content: center; gap: 10px; margin-top: 10px; flex-shrink: 0; flex-wrap: wrap; }
         button { padding: 12px 25px; font-size: 15px; border: none; border-radius: 6px; cursor: pointer; color: white; font-weight: bold; transition: 0.2s; }
         .btn-submit { background-color: #27ae60; }
         .btn-submit:hover { background-color: #219a52; transform: translateY(-2px); }
@@ -52,6 +52,10 @@
         .btn-warning:hover { background-color: #d68910; }
         .btn-retest { background-color: #3498db; }
         .btn-retest:hover { background-color: #2980b9; }
+        .btn-dark { background-color: #34495e; }
+        .btn-dark:hover { background-color: #2c3e50; }
+        .btn-purple { background-color: #8e44ad; }
+        .btn-purple:hover { background-color: #732d91; }
         .hidden { display: none !important; }
 
         .input-group { display: flex; gap: 10px; margin-bottom: 15px; flex-shrink: 0; }
@@ -82,6 +86,17 @@
 
     <div id="test-view">
         <div id="score-board"></div>
+        
+        <div style="display: flex; justify-content: flex-end; align-items: center; margin-bottom: 10px; font-size: 14px; font-weight: bold; color: #333;">
+            <label for="question-count-select" style="margin-right: 8px;">시험 문항 수:</label>
+            <select id="question-count-select" onchange="handleQuestionCountChange()" style="padding: 5px; border-radius: 4px; border: 1px solid #ccc; font-family: inherit; font-size: 14px;">
+                <option value="30">30단어</option>
+                <option value="50">50단어</option>
+                <option value="custom">직접 입력</option>
+            </select>
+            <input type="number" id="custom-question-count" class="hidden" style="width: 70px; padding: 5px; margin-left: 5px; border-radius: 4px; border: 1px solid #ccc; font-size: 14px;" min="1" placeholder="개수 입력">
+        </div>
+
         <div class="table-container">
             <table>
                 <thead>
@@ -126,11 +141,11 @@
                 <tbody id="note-body"></tbody>
             </table>
         </div>
-        <!-- 오답노트 기능 버튼 추가 및 수정 -->
         <div class="btn-group">
             <button class="btn-submit" onclick="startIncorrectTest()">전체 오답 다시 풀기</button>
-            <button class="btn-submit" style="background-color: #8e44ad;" onclick="startRangeIncorrectTest()">범위 지정 시험</button>
-            <button class="btn-retest" onclick="shuffleIncorrectNote()">오답 리스트 섞기</button>
+            <button class="btn-purple" onclick="startRangeIncorrectTest()">범위 지정 시험</button>
+            <button class="btn-retest" onclick="shuffleIncorrectNote()">오답 섞기</button>
+            <button class="btn-dark" onclick="restoreIncorrectNoteOrder()">원래 순서로</button>
             <button class="btn-warning" onclick="clearIncorrectNote()">오답노트 초기화</button>
         </div>
     </div>
@@ -173,7 +188,6 @@
     ];
 
     let currentQuestions = [];
-    const QUESTION_COUNT = 30;
     let isMeaningHidden = false; 
     let incorrectWords = [];
     let myBookList = [];       
@@ -182,7 +196,12 @@
     window.onload = function() {
         try { 
             const parsed = JSON.parse(localStorage.getItem('incorrectWords'));
-            if (Array.isArray(parsed)) incorrectWords = parsed;
+            if (Array.isArray(parsed)) {
+                incorrectWords = parsed.map((w, idx) => {
+                    if (!w.timestamp) w.timestamp = Date.now() + idx; // 순서 복구를 위한 타임스탬프 부여
+                    return w;
+                });
+            }
         } catch(e) {}
         try {
             const savedBook = localStorage.getItem('userCustomBookStore');
@@ -204,6 +223,28 @@
         }
         startNewTest();
     };
+
+    function getTestLimit() {
+        const select = document.getElementById('question-count-select');
+        if (!select) return 30;
+        if (select.value === 'custom') {
+            const customVal = parseInt(document.getElementById('custom-question-count').value, 10);
+            return (isNaN(customVal) || customVal < 1) ? 50 : customVal;
+        }
+        return parseInt(select.value, 10);
+    }
+
+    function handleQuestionCountChange() {
+        const selectVal = document.getElementById('question-count-select').value;
+        const customInput = document.getElementById('custom-question-count');
+        if (selectVal === 'custom') {
+            customInput.classList.remove('hidden');
+            if(!customInput.value) customInput.value = 50;
+            customInput.focus();
+        } else {
+            customInput.classList.add('hidden');
+        }
+    }
 
     function switchView(viewName) {
         document.getElementById('test-view').classList.add('hidden');
@@ -367,8 +408,7 @@
         return newArr;
     }
 
-    // 범위 지정 시 모든 단어가 나올 수 있도록 limit 파라미터 추가
-    function startTestWithData(wordData, limit = QUESTION_COUNT) {
+    function startTestWithData(wordData, limit = getTestLimit()) {
         if (!wordData || wordData.length === 0) return;
         const tbody = document.getElementById('test-body');
         tbody.innerHTML = '';
@@ -411,7 +451,6 @@
         startTestWithData(incorrectWords);
     }
 
-    // ✨ 1. 오답 리스트 섞기 기능 ✨
     function shuffleIncorrectNote() {
         if (incorrectWords.length === 0) return alert("저장된 오답이 없습니다!");
         incorrectWords = shuffleArray(incorrectWords);
@@ -419,7 +458,13 @@
         renderIncorrectNote();
     }
 
-    // ✨ 2. 범위 지정 오답 테스트 기능 ✨
+    function restoreIncorrectNoteOrder() {
+        if (incorrectWords.length === 0) return alert("저장된 오답이 없습니다!");
+        incorrectWords.sort((a, b) => (a.timestamp || 0) - (b.timestamp || 0));
+        try { localStorage.setItem('incorrectWords', JSON.stringify(incorrectWords)); } catch(e) {}
+        renderIncorrectNote();
+    }
+
     function startRangeIncorrectTest() {
         if (incorrectWords.length === 0) return alert("저장된 오답이 없습니다!");
         
@@ -436,12 +481,10 @@
             return alert("유효하지 않은 범위입니다. 번호를 다시 확인해주세요.");
         }
         
-        // 입력받은 범위 추출 (1부터 시작하므로 index 보정)
         const targetWords = incorrectWords.slice(start - 1, end);
         
         switchView('test');
         document.getElementById('main-title').innerText = `오답 집중 테스트 🔥 (${start}~${end}번)`;
-        // 지정된 범위 개수만큼 모두 출제되도록 두 번째 파라미터 전달
         startTestWithData(targetWords, targetWords.length); 
     }
 
@@ -554,7 +597,7 @@
                 resultElement.className = "result-text incorrect"; 
                 
                 if (!incorrectWords.some(n => n.word === q.word)) {
-                    incorrectWords.push({ word: q.word, meanings: safeMeanings });
+                    incorrectWords.push({ word: q.word, meanings: safeMeanings, timestamp: Date.now() });
                 }
             }
         });
