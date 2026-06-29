@@ -66,6 +66,20 @@
         .btn-edit:hover { background-color: #d68910; }
         .btn-add-book { background-color: #2980b9; color: white; border: none; padding: 8px 12px; border-radius: 4px; font-size: 13px; cursor: pointer; transition: 0.2s; font-weight: bold; }
         .btn-add-book:hover { background-color: #1f618d; }
+
+        .editable-word { cursor: context-menu; position: relative; }
+        .editable-word:hover::after {
+            content: '✏️우클릭 수정';
+            position: absolute;
+            right: -10px;
+            top: -10px;
+            font-size: 11px;
+            background: #333;
+            color: #fff;
+            padding: 3px 6px;
+            border-radius: 4px;
+            white-space: nowrap;
+        }
     </style>
 
     <script src="words.js" charset="UTF-8"></script>
@@ -198,7 +212,7 @@
             const parsed = JSON.parse(localStorage.getItem('incorrectWords'));
             if (Array.isArray(parsed)) {
                 incorrectWords = parsed.map((w, idx) => {
-                    if (!w.timestamp) w.timestamp = Date.now() + idx; // 순서 복구를 위한 타임스탬프 부여
+                    if (!w.timestamp) w.timestamp = Date.now() + idx; 
                     return w;
                 });
             }
@@ -399,13 +413,50 @@
         });
     }
 
-    function shuffleArray(array) {
-        let newArr = [...array];
-        for (let i = newArr.length - 1; i > 0; i--) {
-            const j = Math.floor(Math.random() * (i + 1));
-            [newArr[i], newArr[j]] = [newArr[j], newArr[i]];
+    function handleRightClickEdit(event, testIndex) {
+        event.preventDefault(); 
+        
+        const q = currentQuestions[testIndex];
+        const originalWord = q.word;
+
+        const manageIndex = mainManageList.findIndex(item => item.word === originalWord);
+        let targetItem = manageIndex !== -1 ? mainManageList[manageIndex] : q; 
+
+        const newWord = prompt(`[${originalWord}] 단어를 수정하세요:`, targetItem.word);
+        if (newWord === null) return; 
+        
+        const currentMeanings = Array.isArray(targetItem.meanings) ? targetItem.meanings.join(', ') : targetItem.meanings;
+        const newMeanings = prompt(`[${newWord}] 뜻을 수정하세요 (쉼표로 구분):`, currentMeanings);
+        if (newMeanings === null) return;
+
+        const updatedWord = newWord.trim();
+        const updatedMeanings = newMeanings.split(',').map(s => s.trim()).filter(s => s.length > 0);
+
+        if(manageIndex !== -1) {
+            mainManageList[manageIndex].word = updatedWord;
+            mainManageList[manageIndex].meanings = updatedMeanings;
+            saveManageList();
         }
-        return newArr;
+
+        currentQuestions[testIndex].word = updatedWord;
+        currentQuestions[testIndex].meanings = updatedMeanings;
+        event.currentTarget.innerText = updatedWord; 
+
+        const noteIndex = incorrectWords.findIndex(n => n.word === originalWord);
+        if (noteIndex !== -1) {
+            incorrectWords[noteIndex].word = updatedWord;
+            incorrectWords[noteIndex].meanings = updatedMeanings;
+            try { localStorage.setItem('incorrectWords', JSON.stringify(incorrectWords)); } catch(e) {}
+        }
+
+        const bookIndex = myBookList.findIndex(b => b.word === originalWord);
+        if (bookIndex !== -1) {
+            myBookList[bookIndex].word = updatedWord;
+            myBookList[bookIndex].meanings = updatedMeanings;
+            try { localStorage.setItem('userCustomBookStore', JSON.stringify(myBookList)); } catch(e) {}
+        }
+
+        alert(`단어가 성공적으로 수정되었습니다.\n- 단어: ${updatedWord}\n- 뜻: ${updatedMeanings.join(', ')}`);
     }
 
     function startTestWithData(wordData, limit = getTestLimit()) {
@@ -414,15 +465,34 @@
         tbody.innerHTML = '';
         document.getElementById('score-board').innerText = '';
 
-        let shuffled = shuffleArray(wordData);
-        const testCount = Math.min(limit, shuffled.length);
-        currentQuestions = shuffled.slice(0, testCount);
+        wordData.forEach(w => {
+            if (typeof w.testCount === 'undefined') w.testCount = 0;
+            w._randomSeed = Math.random(); 
+        });
+
+        let sortedWords = [...wordData].sort((a, b) => {
+            if (a.testCount === b.testCount) {
+                return a._randomSeed - b._randomSeed;
+            }
+            return a.testCount - b.testCount;
+        });
+
+        const testCount = Math.min(limit, sortedWords.length);
+        currentQuestions = sortedWords.slice(0, testCount);
+
+        currentQuestions.forEach(q => {
+            q.testCount += 1;
+        });
+
+        if (wordData === mainManageList) {
+            saveManageList();
+        }
 
         currentQuestions.forEach((q, index) => {
             const tr = document.createElement('tr');
             tr.innerHTML = `
                 <td>${index + 1}</td>
-                <td style="font-weight: bold; font-size: 16px; color: #333;">${q.word}</td>
+                <td class="editable-word" style="font-weight: bold; font-size: 16px; color: #333;" title="우클릭하여 단어 및 뜻 수정" oncontextmenu="handleRightClickEdit(event, ${index})">${q.word}</td>
                 <td>
                     <input type="text" id="answer-${index}" autocomplete="off">
                     <span id="result-${index}" class="result-text"></span>
@@ -440,8 +510,31 @@
 
     function retestCurrent() {
         if (currentQuestions.length === 0) return alert("현재 출제된 단어가 없습니다!");
-        startTestWithData([...currentQuestions]);
+        const limit = currentQuestions.length;
+        const tbody = document.getElementById('test-body');
+        tbody.innerHTML = '';
         document.getElementById('score-board').innerText = '진행하던 단어들의 위치가 재배치되었습니다. 다시 풀어보세요!';
+
+        let newArr = [...currentQuestions];
+        for (let i = newArr.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [newArr[i], newArr[j]] = [newArr[j], newArr[i]];
+        }
+        currentQuestions = newArr;
+
+        currentQuestions.forEach((q, index) => {
+            const tr = document.createElement('tr');
+            tr.innerHTML = `
+                <td>${index + 1}</td>
+                <td class="editable-word" style="font-weight: bold; font-size: 16px; color: #333;" title="우클릭하여 단어 및 뜻 수정" oncontextmenu="handleRightClickEdit(event, ${index})">${q.word}</td>
+                <td>
+                    <input type="text" id="answer-${index}" autocomplete="off">
+                    <span id="result-${index}" class="result-text"></span>
+                </td>
+            `;
+            tbody.appendChild(tr);
+        });
+        document.querySelector('#test-view .table-container').scrollTop = 0;
     }
 
     function startIncorrectTest() {
@@ -449,6 +542,15 @@
         switchView('test');
         document.getElementById('main-title').innerText = '오답 집중 테스트 🔥';
         startTestWithData(incorrectWords);
+    }
+
+    function shuffleArray(array) {
+        let newArr = [...array];
+        for (let i = newArr.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [newArr[i], newArr[j]] = [newArr[j], newArr[i]];
+        }
+        return newArr;
     }
 
     function shuffleIncorrectNote() {
@@ -540,6 +642,7 @@
         }
     }
 
+    // 레벤슈타인 거리 알고리즘 (글자 차이 계산)
     function getEditDistance(a, b) {
         if(a.length === 0) return b.length;
         if(b.length === 0) return a.length;
@@ -555,23 +658,46 @@
         return matrix[b.length][a.length];
     }
 
+    // 🌟 수정된 채점 로직 (품사 엄격 구분 및 길이 조건 추가)
     function isFlexibleMatch(userInput, meanings) {
-        const userParts = userInput.split(/[,/]+/).map(s => s.trim()).filter(s => s.length > 0);
+        // 공백만 제거하고 품사 어미(하다, 한 등)는 그대로 유지
+        const userParts = userInput.split(/[,/]+/).map(s => s.trim().replace(/\s+/g, '')).filter(s => s.length > 0);
         if (userParts.length === 0) return false;
-        return userParts.some(part => {
-            const cleanInput = part.replace(/\s+/g, '').replace(/(하다|히|하게|한|스러운|되다|시키다|할수있는|적인|의|을|를|됨|성있는|성이있는|있는|인)$/g, '');
-            let searchRoots = [cleanInput];
-            synonymGroups.forEach(group => {
-                if (group.some(g => cleanInput.includes(g) || g.includes(cleanInput))) searchRoots = searchRoots.concat(group);
-            });
+
+        return userParts.some(cleanInput => {
             return meanings.some(meaning => {
-                const cleanMeaning = String(meaning).replace(/\s+/g, '').replace(/(하다|히|하게|한|스러운|되다|시키다|할수있는|적인|의|을|를|됨|성있는|성이있는|있는|인)$/g, '');
-                return searchRoots.some(sr => {
-                    if (cleanMeaning === cleanInput || cleanMeaning === sr || cleanMeaning.includes(sr)) return true;
-                    if (sr.length >= 2 && getEditDistance(cleanMeaning, sr) <= 1) return true;
-                    if (cleanInput.length >= 2 && getEditDistance(cleanMeaning, cleanInput) <= 1) return true;
-                    return false;
+                const cleanMeaning = String(meaning).replace(/\s+/g, '');
+                
+                // 1. 완전히 일치하는 경우
+                if (cleanMeaning === cleanInput) return true;
+                
+                // 2. 유의어 그룹 내 포함 여부 (품사 어미까지 동일한지 체크)
+                let isSynonymMatch = false;
+                synonymGroups.forEach(group => {
+                    const matchInput = group.find(g => cleanInput.includes(g));
+                    const matchMeaning = group.find(g => cleanMeaning.includes(g));
+                    
+                    // 어근이 유의어 그룹에 속하고, 뒤에 붙은 어미(품사)가 똑같을 때만 인정
+                    if (matchInput && matchMeaning) {
+                        const tailInput = cleanInput.replace(matchInput, '');
+                        const tailMeaning = cleanMeaning.replace(matchMeaning, '');
+                        if (tailInput === tailMeaning) {
+                            isSynonymMatch = true;
+                        }
+                    }
                 });
+                if (isSynonymMatch) return true;
+
+                // 3. 오타 허용 조건 강화: 정답의 길이가 4글자 이상일 때만 거리 1 허용
+                // 예: '방해하다'(4) vs '당해하다'(4) -> 허용 (O)
+                // 예: '이질성'(3) vs '동질성'(3) -> 길이 조건 미달로 허용 안함 (X)
+                if (cleanMeaning.length >= 4 && cleanInput.length >= 4) {
+                    if (getEditDistance(cleanMeaning, cleanInput) <= 1) {
+                        return true;
+                    }
+                }
+                
+                return false;
             });
         });
     }
