@@ -34,7 +34,6 @@
         
         input[type="text"] { width: 92%; padding: 8px; border: 1px solid #ccc; border-radius: 5px; text-align: center; font-size: 15px; background: #fafafa; pointer-events: auto; }
         input[type="text"]:focus { background: #fff; border-color: #8ec5fc; outline: none; box-shadow: 0 0 5px rgba(142, 197, 252, 0.5); }
-        input[type="checkbox"] { width: 18px; height: 18px; cursor: pointer; }
         
         .result-text { font-size: 14px; margin-top: 5px; display: block; font-weight: bold; word-break: keep-all; }
         .correct { color: #27ae60; }
@@ -44,7 +43,7 @@
         .concealed:hover { background-color: #ecf0f1 !important; color: #007bff !important; }
 
         .btn-group { display: flex; justify-content: center; gap: 10px; margin-top: 10px; flex-shrink: 0; flex-wrap: wrap; }
-        button { padding: 12px 20px; font-size: 15px; border: none; border-radius: 6px; cursor: pointer; color: white; font-weight: bold; transition: 0.2s; }
+        button { padding: 12px 25px; font-size: 15px; border: none; border-radius: 6px; cursor: pointer; color: white; font-weight: bold; transition: 0.2s; }
         .btn-submit { background-color: #27ae60; }
         .btn-submit:hover { background-color: #219a52; transform: translateY(-2px); }
         .btn-reset { background-color: #e74c3c; }
@@ -60,7 +59,7 @@
         .hidden { display: none !important; }
 
         .input-group { display: flex; gap: 10px; margin-bottom: 15px; flex-shrink: 0; }
-        .input-group input[type="text"] { flex-grow: 1; border: 1px solid #ccc; padding: 12px; border-radius: 5px; font-size: 15px;}
+        .input-group input { flex-grow: 1; border: 1px solid #ccc; padding: 12px; border-radius: 5px; font-size: 15px;}
         .btn-delete { background-color: #e74c3c; color: white; border: none; padding: 6px 10px; border-radius: 4px; font-size: 13px; cursor: pointer; transition: 0.2s;}
         .btn-delete:hover { background-color: #c0392b; }
         .btn-edit { background-color: #f39c12; color: white; border: none; padding: 6px 10px; border-radius: 4px; font-size: 13px; cursor: pointer; transition: 0.2s; margin-right: 5px; }
@@ -70,7 +69,7 @@
 
         .editable-word { cursor: context-menu; position: relative; }
         .editable-word:hover::after {
-            content: '✏️뜻 수정(우클릭)';
+            content: '✏️우클릭 수정';
             position: absolute;
             right: -10px;
             top: -10px;
@@ -115,21 +114,14 @@
         <div class="table-container">
             <table>
                 <thead>
-                    <tr>
-                        <th style="width: 5%;"><input type="checkbox" id="check-all" onclick="toggleAllChecks(this)" title="전체 선택/해제"></th>
-                        <th style="width: 8%;">NO</th>
-                        <th style="width: 20%;">단어 (Word)</th>
-                        <th style="width: 67%;">뜻 (Meaning)</th>
-                    </tr>
+                    <tr><th style="width: 8%;">NO</th><th style="width: 25%;">단어 (Word)</th><th style="width: 67%;">뜻 (Meaning)</th></tr>
                 </thead>
                 <tbody id="test-body"></tbody>
             </table>
         </div>
         <div class="btn-group">
             <button class="btn-submit" id="btn-grade" onclick="gradeTest()">채점하기</button>
-            <button class="btn-warning" id="btn-retest-wrong" style="display: none;" onclick="retestWrongWords()">❌ 틀린 단어만 재시험</button>
-            <button class="btn-purple" onclick="retestSelected()">☑️ 선택 단어만 재시험</button>
-            <button class="btn-retest" onclick="retestCurrent()">현재 전체 재시험</button>
+            <button class="btn-retest" onclick="retestCurrent()">현재 단어로 재시험</button>
             <button class="btn-reset" onclick="startNewTest()">새로운 문제 풀기</button>
         </div>
     </div>
@@ -421,7 +413,6 @@
         });
     }
 
-    // 🌟 영단어는 고정하고 한글 뜻만 수정하도록 변경 및 영구 저장 적용
     function handleRightClickEdit(event, testIndex) {
         event.preventDefault(); 
         
@@ -430,71 +421,48 @@
 
         const manageIndex = mainManageList.findIndex(item => item.word === originalWord);
         let targetItem = manageIndex !== -1 ? mainManageList[manageIndex] : q; 
+
+        const newWord = prompt(`[${originalWord}] 단어를 수정하세요:`, targetItem.word);
+        if (newWord === null) return; 
         
         const currentMeanings = Array.isArray(targetItem.meanings) ? targetItem.meanings.join(', ') : targetItem.meanings;
-        // 영어 단어 프롬프트 제거, 오직 한글 뜻만 물어봄
-        const newMeanings = prompt(`[${originalWord}] 단어의 뜻을 수정하세요 (쉼표로 구분):`, currentMeanings);
+        const newMeanings = prompt(`[${newWord}] 뜻을 수정하세요 (쉼표로 구분):`, currentMeanings);
         if (newMeanings === null) return;
 
+        const updatedWord = newWord.trim();
         const updatedMeanings = newMeanings.split(',').map(s => s.trim()).filter(s => s.length > 0);
 
-        // 전체 단어 풀(localStorage)에 즉시 저장되어 새로고침해도 유지됨
         if(manageIndex !== -1) {
+            mainManageList[manageIndex].word = updatedWord;
             mainManageList[manageIndex].meanings = updatedMeanings;
             saveManageList();
         }
 
+        currentQuestions[testIndex].word = updatedWord;
         currentQuestions[testIndex].meanings = updatedMeanings;
+        event.currentTarget.innerText = updatedWord; 
 
         const noteIndex = incorrectWords.findIndex(n => n.word === originalWord);
         if (noteIndex !== -1) {
+            incorrectWords[noteIndex].word = updatedWord;
             incorrectWords[noteIndex].meanings = updatedMeanings;
             try { localStorage.setItem('incorrectWords', JSON.stringify(incorrectWords)); } catch(e) {}
         }
 
         const bookIndex = myBookList.findIndex(b => b.word === originalWord);
         if (bookIndex !== -1) {
+            myBookList[bookIndex].word = updatedWord;
             myBookList[bookIndex].meanings = updatedMeanings;
             try { localStorage.setItem('userCustomBookStore', JSON.stringify(myBookList)); } catch(e) {}
         }
 
-        alert(`단어 뜻이 전체 데이터베이스에 성공적으로 수정(저장)되었습니다.\n- 단어: ${originalWord}\n- 바뀐 뜻: ${updatedMeanings.join(', ')}`);
-    }
-
-    function renderTestTable() {
-        const tbody = document.getElementById('test-body');
-        tbody.innerHTML = '';
-        currentQuestions.forEach((q, index) => {
-            const tr = document.createElement('tr');
-            tr.innerHTML = `
-                <td><input type="checkbox" class="word-checkbox" value="${index}"></td>
-                <td>${index + 1}</td>
-                <td class="editable-word" style="font-weight: bold; font-size: 16px; color: #333;" title="우클릭하여 뜻 수정" oncontextmenu="handleRightClickEdit(event, ${index})">${q.word}</td>
-                <td>
-                    <input type="text" id="answer-${index}" autocomplete="off">
-                    <span id="result-${index}" class="result-text"></span>
-                </td>
-            `;
-            tbody.appendChild(tr);
-        });
-        document.querySelector('#test-view .table-container').scrollTop = 0;
-
-        const checkAllBox = document.getElementById('check-all');
-        if (checkAllBox) checkAllBox.checked = false;
-
-        // 새 시험 렌더링 시 오답 전용 버튼 숨기기
-        document.getElementById('btn-retest-wrong').style.display = 'none';
-    }
-
-    function toggleAllChecks(source) {
-        const checkboxes = document.querySelectorAll('.word-checkbox');
-        checkboxes.forEach(cb => {
-            cb.checked = source.checked;
-        });
+        alert(`단어가 성공적으로 수정되었습니다.\n- 단어: ${updatedWord}\n- 뜻: ${updatedMeanings.join(', ')}`);
     }
 
     function startTestWithData(wordData, limit = getTestLimit()) {
         if (!wordData || wordData.length === 0) return;
+        const tbody = document.getElementById('test-body');
+        tbody.innerHTML = '';
         document.getElementById('score-board').innerText = '';
 
         wordData.forEach(w => {
@@ -520,7 +488,19 @@
             saveManageList();
         }
 
-        renderTestTable(); 
+        currentQuestions.forEach((q, index) => {
+            const tr = document.createElement('tr');
+            tr.innerHTML = `
+                <td>${index + 1}</td>
+                <td class="editable-word" style="font-weight: bold; font-size: 16px; color: #333;" title="우클릭하여 단어 및 뜻 수정" oncontextmenu="handleRightClickEdit(event, ${index})">${q.word}</td>
+                <td>
+                    <input type="text" id="answer-${index}" autocomplete="off">
+                    <span id="result-${index}" class="result-text"></span>
+                </td>
+            `;
+            tbody.appendChild(tr);
+        });
+        document.querySelector('#test-view .table-container').scrollTop = 0;
     }
 
     function startNewTest() {
@@ -530,47 +510,31 @@
 
     function retestCurrent() {
         if (currentQuestions.length === 0) return alert("현재 출제된 단어가 없습니다!");
+        const limit = currentQuestions.length;
+        const tbody = document.getElementById('test-body');
+        tbody.innerHTML = '';
         document.getElementById('score-board').innerText = '진행하던 단어들의 위치가 재배치되었습니다. 다시 풀어보세요!';
-        currentQuestions = shuffleArray(currentQuestions); 
-        renderTestTable(); 
-    }
 
-    // 🌟 선택한 단어만 재시험 (기존 기능)
-    function retestSelected() {
-        const checkboxes = document.querySelectorAll('.word-checkbox:checked');
-        if (checkboxes.length === 0) {
-            return alert("선택된 단어가 없습니다! 재시험 볼 단어를 체크해주세요.");
+        let newArr = [...currentQuestions];
+        for (let i = newArr.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [newArr[i], newArr[j]] = [newArr[j], newArr[i]];
         }
+        currentQuestions = newArr;
 
-        const selectedQuestions = [];
-        checkboxes.forEach(cb => {
-            const index = parseInt(cb.value, 10);
-            selectedQuestions.push(currentQuestions[index]);
-        });
-
-        currentQuestions = shuffleArray(selectedQuestions);
-        document.getElementById('score-board').innerText = `선택한 ${currentQuestions.length}개의 단어로 재시험을 시작합니다!`;
-        renderTestTable(); 
-    }
-
-    // 🌟 채점 후 틀린 단어만 재시험 (새로운 기능)
-    function retestWrongWords() {
-        const wrongQuestions = [];
         currentQuestions.forEach((q, index) => {
-            const inputElement = document.getElementById(`answer-${index}`);
-            // is-correct 클래스가 없으면 오답(또는 빈칸)으로 간주
-            if (!inputElement.classList.contains('is-correct')) {
-                wrongQuestions.push(q);
-            }
+            const tr = document.createElement('tr');
+            tr.innerHTML = `
+                <td>${index + 1}</td>
+                <td class="editable-word" style="font-weight: bold; font-size: 16px; color: #333;" title="우클릭하여 단어 및 뜻 수정" oncontextmenu="handleRightClickEdit(event, ${index})">${q.word}</td>
+                <td>
+                    <input type="text" id="answer-${index}" autocomplete="off">
+                    <span id="result-${index}" class="result-text"></span>
+                </td>
+            `;
+            tbody.appendChild(tr);
         });
-
-        if (wrongQuestions.length === 0) {
-            return alert("모든 단어를 맞히셨습니다! 틀린 단어가 없습니다.");
-        }
-
-        currentQuestions = shuffleArray(wrongQuestions);
-        document.getElementById('score-board').innerText = `틀린 ${currentQuestions.length}개의 단어로 재시험을 시작합니다! 다시 도전해보세요.`;
-        renderTestTable();
+        document.querySelector('#test-view .table-container').scrollTop = 0;
     }
 
     function startIncorrectTest() {
@@ -678,6 +642,7 @@
         }
     }
 
+    // 레벤슈타인 거리 알고리즘 (글자 차이 계산)
     function getEditDistance(a, b) {
         if(a.length === 0) return b.length;
         if(b.length === 0) return a.length;
@@ -693,7 +658,9 @@
         return matrix[b.length][a.length];
     }
 
+    // 🌟 수정된 채점 로직 (품사 엄격 구분 및 길이 조건 추가)
     function isFlexibleMatch(userInput, meanings) {
+        // 공백만 제거하고 품사 어미(하다, 한 등)는 그대로 유지
         const userParts = userInput.split(/[,/]+/).map(s => s.trim().replace(/\s+/g, '')).filter(s => s.length > 0);
         if (userParts.length === 0) return false;
 
@@ -701,13 +668,16 @@
             return meanings.some(meaning => {
                 const cleanMeaning = String(meaning).replace(/\s+/g, '');
                 
+                // 1. 완전히 일치하는 경우
                 if (cleanMeaning === cleanInput) return true;
                 
+                // 2. 유의어 그룹 내 포함 여부 (품사 어미까지 동일한지 체크)
                 let isSynonymMatch = false;
                 synonymGroups.forEach(group => {
                     const matchInput = group.find(g => cleanInput.includes(g));
                     const matchMeaning = group.find(g => cleanMeaning.includes(g));
                     
+                    // 어근이 유의어 그룹에 속하고, 뒤에 붙은 어미(품사)가 똑같을 때만 인정
                     if (matchInput && matchMeaning) {
                         const tailInput = cleanInput.replace(matchInput, '');
                         const tailMeaning = cleanMeaning.replace(matchMeaning, '');
@@ -718,6 +688,9 @@
                 });
                 if (isSynonymMatch) return true;
 
+                // 3. 오타 허용 조건 강화: 정답의 길이가 4글자 이상일 때만 거리 1 허용
+                // 예: '방해하다'(4) vs '당해하다'(4) -> 허용 (O)
+                // 예: '이질성'(3) vs '동질성'(3) -> 길이 조건 미달로 허용 안함 (X)
                 if (cleanMeaning.length >= 4 && cleanInput.length >= 4) {
                     if (getEditDistance(cleanMeaning, cleanInput) <= 1) {
                         return true;
@@ -767,9 +740,6 @@
 
         document.getElementById('score-board').innerText = `결과: ${finalScore} / ${total} 점`;
         document.querySelector('#test-view .table-container').scrollTop = 0;
-
-        // 🌟 채점이 완료되면 틀린 단어 재시험 버튼 표시
-        document.getElementById('btn-retest-wrong').style.display = 'inline-block';
     }
 </script>
 
