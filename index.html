@@ -82,7 +82,7 @@
         }
     </style>
 
-    <script src="words.js?v=20261014_v6" charset="UTF-8"></script>
+    <script src="words.js?v=20261014_v7" charset="UTF-8"></script>
 </head>
 <body>
 
@@ -219,11 +219,11 @@
 
 <script>
     // 🚨 이전의 오염된 구버전 덤프 캐시를 브라우저 실행 즉시 100% 자동 영구 삭제
-    if (localStorage.getItem('words_clean_build_v20261014_v6') !== 'DONE') {
+    if (localStorage.getItem('words_clean_build_v20261014_v7') !== 'DONE') {
         localStorage.removeItem('myManageList');
         localStorage.removeItem('words_dataset_version');
         localStorage.removeItem('incorrectWords');
-        localStorage.setItem('words_clean_build_v20261014_v6', 'DONE');
+        localStorage.setItem('words_clean_build_v20261014_v7', 'DONE');
     }
 
     const synonymGroups = [
@@ -334,7 +334,7 @@
             return alert("기본 단어장 데이터를 불러올 수 없습니다. words.js를 확인해주세요.");
         }
         mainManageList = [...defaultWords];
-        localStorage.setItem('words_dataset_version', '20261014-master-standard-v3');
+        localStorage.setItem('words_dataset_version', '20261014-master-standard-v7');
         saveManageList();
         renderManageTable();
         startNewTest();
