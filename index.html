@@ -82,7 +82,7 @@
         }
     </style>
 
-    <script src="words.js" charset="UTF-8"></script>
+    <script src="words.js?v=20261014_v5" charset="UTF-8"></script>
 </head>
 <body>
 
@@ -166,8 +166,9 @@
     </div>
 
     <div id="manage-view" class="hidden">
-        <div style="text-align: center; margin-bottom: 15px; color: #333;">
-            <strong style="font-size: 15px;">전체 단어 풀 관리 공간입니다. 검색, 추가, 수정, 삭제가 가능합니다. (총 <span id="manage-count" style="color: #8e44ad; font-weight: bold;">0</span>개)</strong>
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+            <strong style="font-size: 15px; color: #333;">전체 단어 풀 관리 공간입니다. 검색, 추가, 수정, 삭제가 가능합니다. (총 <span id="manage-count" style="color: #8e44ad; font-weight: bold;">0</span>개)</strong>
+            <button class="nav-btn" style="background-color: #e67e22; padding: 7px 12px; font-size: 13px;" onclick="resetManageToDefaultWords()">🔄 기본 단어장(words.js)으로 동기화</button>
         </div>
         <div style="background: #f8f9fa; padding: 15px; border-radius: 8px; border: 1px solid #ddd; margin-bottom: 15px;">
             <div class="input-group" style="margin-bottom: 10px;">
@@ -202,12 +203,13 @@
                 <div class="table-container" style="margin-bottom: 0;">
                     <table>
                         <thead>
-                            <tr><th style="width: 10%;">NO</th><th style="width: 30%;">단어 (Word)</th><th style="width: 60%;">뜻 (Meaning)</th></tr>
+                            <tr><th style="width: 5%;"><input type="checkbox" id="history-select-all" onclick="toggleAllHistory(this)" style="cursor:pointer; transform: scale(1.2);"></th><th style="width: 10%;">NO</th><th style="width: 25%;">단어 (Word)</th><th style="width: 60%;">뜻 (Meaning)</th></tr>
                         </thead>
                         <tbody id="history-words-body"></tbody>
                     </table>
                 </div>
                 <div class="btn-group" style="margin-top: 15px;">
+                    <button class="btn-retest" onclick="startHistoryRetest()">선택한 단어 재시험</button>
                     <button class="btn-warning" onclick="clearHistory()">전체 기록 초기화</button>
                 </div>
             </div>
@@ -216,6 +218,14 @@
 </div>
 
 <script>
+    // 🚨 이전의 오염된 구버전 덤프 캐시를 브라우저 실행 즉시 100% 자동 영구 삭제
+    if (localStorage.getItem('words_clean_build_v20261014_v5') !== 'DONE') {
+        localStorage.removeItem('myManageList');
+        localStorage.removeItem('words_dataset_version');
+        localStorage.removeItem('incorrectWords');
+        localStorage.setItem('words_clean_build_v20261014_v5', 'DONE');
+    }
+
     const synonymGroups = [
         ["중지", "중단", "정지", "그만", "멈춤", "끝내"],
         ["명백", "명확", "분명", "확실", "뚜렷", "해명"],
@@ -224,7 +234,13 @@
         ["버리", "포기", "단념", "저버리", "유기"],
         ["혐오", "미워", "싫어", "증오", "역겹", "경멸"],
         ["제공", "주다", "부여", "수여", "공급", "지급"],
-        ["요약", "단축", "줄이", "생략", "축약"]
+        ["요약", "단축", "줄이", "생략", "축약"],
+        ["비난", "혹평", "헐뜯", "책망", "힐난"],
+        ["이별", "작별", "고별", "헤어짐"],
+        ["당파", "분파", "당쟁", "파벌"],
+        ["반항", "반역", "거역"],
+        ["칭찬", "찬사", "찬양", "극찬", "격찬"],
+        ["완화", "경감", "누그러", "진정"]
     ];
 
     let currentQuestions = [];
@@ -253,21 +269,77 @@
             if (savedHistory) studyHistory = JSON.parse(savedHistory);
         } catch(e) {}
         try {
-            const savedManage = JSON.parse(localStorage.getItem('myManageList'));
-            if (savedManage && savedManage.length > 0) {
-                mainManageList = savedManage;
-            } else if (typeof defaultWords !== 'undefined') {
-                mainManageList = [...defaultWords];
-            } else if (typeof additionalWords !== 'undefined') { 
-                mainManageList = [...additionalWords];
+            const currentDataVersion = '20261014-master-standard-v6';
+            const savedDataVersion = localStorage.getItem('words_dataset_version');
+
+            // 항상 최신 defaultWords를 우선 로드
+            if (typeof defaultWords !== 'undefined' && defaultWords.length > 0) {
+                const defaultMap = new Map(defaultWords.map(w => [w.word.toLowerCase(), w.meanings]));
+
+                // 버전이 다르거나 데이터가 없으면 words.js로 전면 갱신
+                if (savedDataVersion !== currentDataVersion || !localStorage.getItem('myManageList')) {
+                    mainManageList = [...defaultWords];
+                    localStorage.setItem('words_dataset_version', currentDataVersion);
+                    localStorage.setItem('myManageList', JSON.stringify(mainManageList));
+                } else {
+                    try {
+                        const savedManage = JSON.parse(localStorage.getItem('myManageList'));
+                        // 저장된 목록이 있더라도 각 단어의 뜻은 defaultWords의 최신 정제 뜻으로 동기화
+                        mainManageList = savedManage.map(item => {
+                            const newM = defaultMap.get(item.word.toLowerCase());
+                            return newM ? { ...item, meanings: newM } : item;
+                        });
+                        localStorage.setItem('myManageList', JSON.stringify(mainManageList));
+                    } catch(e) {
+                        mainManageList = [...defaultWords];
+                    }
+                }
+
+                // 오답노트 뜻도 항상 최신 defaultWords 뜻으로 동기화
+                let noteUpdated = false;
+                incorrectWords.forEach(item => {
+                    const newMeanings = defaultMap.get(item.word.toLowerCase());
+                    if (newMeanings && JSON.stringify(item.meanings) !== JSON.stringify(newMeanings)) {
+                        item.meanings = newMeanings;
+                        noteUpdated = true;
+                    }
+                });
+                if (noteUpdated) {
+                    try { localStorage.setItem('incorrectWords', JSON.stringify(incorrectWords)); } catch(e) {}
+                }
+
+                // 내 단어장 뜻도 항상 최신 defaultWords 뜻으로 동기화
+                let bookUpdated = false;
+                myBookList.forEach(item => {
+                    const newMeanings = defaultMap.get(item.word.toLowerCase());
+                    if (newMeanings && JSON.stringify(item.meanings) !== JSON.stringify(newMeanings)) {
+                        item.meanings = newMeanings;
+                        bookUpdated = true;
+                    }
+                });
+                if (bookUpdated) {
+                    try { localStorage.setItem('userCustomBookStore', JSON.stringify(myBookList)); } catch(e) {}
+                }
             } else {
                 mainManageList = [];
             }
         } catch(e) {
-            mainManageList = typeof defaultWords !== 'undefined' ? [...defaultWords] : [];
+            mainManageList = (typeof defaultWords !== 'undefined') ? [...defaultWords] : [];
         }
         startNewTest();
     };
+
+    function resetManageToDefaultWords() {
+        if (typeof defaultWords === 'undefined' || defaultWords.length === 0) {
+            return alert("기본 단어장 데이터를 불러올 수 없습니다. words.js를 확인해주세요.");
+        }
+        mainManageList = [...defaultWords];
+        localStorage.setItem('words_dataset_version', '20261014-master-standard-v3');
+        saveManageList();
+        renderManageTable();
+        startNewTest();
+        alert(`성공적으로 기본 단어장(${defaultWords.length}단어)과 동기화되었습니다!`);
+    }
 
     function getTestLimit() {
         const select = document.getElementById('question-count-select');
@@ -319,6 +391,7 @@
             renderManageTable();
         } else if (viewName === 'history') {
             document.getElementById('history-view').classList.remove('hidden');
+            document.getElementById('toggle-meaning-btn').classList.remove('hidden');
             document.getElementById('main-title').innerText = '학습 기록 📅';
             renderHistoryView();
         }
@@ -329,7 +402,8 @@
         const btn = document.getElementById('toggle-meaning-btn');
         btn.innerText = isMeaningHidden ? '뜻 보이기 👁️' : '뜻 가리기 ⬛';
         renderIncorrectNote();
-        renderBookTable(); 
+        renderBookTable();
+        if (typeof renderHistoryView === 'function') renderHistoryView();
     }
 
     function renderBookTable() {
@@ -516,6 +590,17 @@
 
         const testCount = Math.min(limit, sortedWords.length);
         currentQuestions = sortedWords.slice(0, testCount);
+
+        // words.js의 최신 정제된 뜻으로 강제 동기화
+        if (typeof defaultWords !== 'undefined' && defaultWords.length > 0) {
+            const defaultMap = new Map(defaultWords.map(w => [w.word.toLowerCase(), w.meanings]));
+            currentQuestions.forEach(q => {
+                const latestM = defaultMap.get(q.word.toLowerCase());
+                if (latestM && latestM.length > 0) {
+                    q.meanings = latestM;
+                }
+            });
+        }
 
         currentQuestions.forEach(q => {
             q.testCount += 1;
@@ -745,7 +830,14 @@
         currentQuestions.forEach((q, index) => {
             const inputElement = document.getElementById(`answer-${index}`);
             const resultElement = document.getElementById(`result-${index}`);
-            const safeMeanings = Array.isArray(q.meanings) ? q.meanings : [q.meanings];
+            let safeMeanings = Array.isArray(q.meanings) ? q.meanings : [q.meanings];
+            if (typeof defaultWords !== 'undefined' && defaultWords.length > 0) {
+                const f = defaultWords.find(w => w.word.toLowerCase() === q.word.toLowerCase());
+                if (f && f.meanings && f.meanings.length > 0) {
+                    safeMeanings = f.meanings;
+                    q.meanings = f.meanings;
+                }
+            }
 
             inputElement.readOnly = false;
             inputElement.disabled = false;
@@ -847,20 +939,52 @@
         const words = studyHistory[date] || [];
         
         if (words.length === 0) {
-            tbody.innerHTML = `<tr><td colspan="3" style="padding: 40px; color: #888;">이 날짜에는 학습 기록이 없습니다.</td></tr>`;
+            tbody.innerHTML = `<tr><td colspan="4" style="padding: 40px; color: #888;">이 날짜에는 학습 기록이 없습니다.</td></tr>`;
             return;
         }
+        
+        const selectAllCheckbox = document.getElementById('history-select-all');
+        if (selectAllCheckbox) selectAllCheckbox.checked = false;
 
+        const hideClass = isMeaningHidden ? 'concealed' : ''; 
         words.forEach((item, index) => {
             const safeMeanings = Array.isArray(item.meanings) ? item.meanings : [item.meanings];
             const tr = document.createElement('tr');
             tr.innerHTML = `
+                <td><input type="checkbox" class="history-checkbox" data-index="${index}" data-date="${date}" style="cursor:pointer; transform: scale(1.2);"></td>
                 <td>${index + 1}</td>
                 <td style="font-weight: bold; color: #2c3e50; font-size: 15px;">${item.word}</td>
-                <td style="color: #007bff; font-weight: bold; font-size: 15px;">${safeMeanings.join(', ')}</td>
+                <td style="padding: 10px; text-align: left;">
+                    <div class="${hideClass}" style="display:inline-block; padding: 6px 10px; width: 100%; box-sizing: border-box; color: #007bff; font-weight: bold; word-break: keep-all; overflow-wrap: break-word;">${safeMeanings.join(', ')}</div>
+                </td>
             `;
             tbody.appendChild(tr);
         });
+    }
+
+    function toggleAllHistory(checkbox) {
+        const checkboxes = document.querySelectorAll('.history-checkbox');
+        checkboxes.forEach(cb => cb.checked = checkbox.checked);
+    }
+
+    function startHistoryRetest() {
+        const checkboxes = document.querySelectorAll('.history-checkbox:checked');
+        if (checkboxes.length === 0) {
+            return alert("재시험 볼 단어를 선택해주세요.");
+        }
+        
+        const selectedWords = [];
+        checkboxes.forEach(cb => {
+            const date = cb.getAttribute('data-date');
+            const index = parseInt(cb.getAttribute('data-index'), 10);
+            if (studyHistory[date] && studyHistory[date][index]) {
+                selectedWords.push(studyHistory[date][index]);
+            }
+        });
+        
+        switchView('test');
+        document.getElementById('main-title').innerText = '학습 기록 재시험 🔥';
+        startTestWithData(selectedWords, selectedWords.length);
     }
 
     function clearHistory() {
