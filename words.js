@@ -24,7 +24,7 @@ const defaultWords = [
   {
     "word": "abate",
     "meanings": [
-      "줄이다",
+      "감소하다",
       "완화하다",
       "가라앉다"
     ]
@@ -129,7 +129,7 @@ const defaultWords = [
     "meanings": [
       "머무르다",
       "견디다",
-      "지키다"
+      "유지하다"
     ]
   },
   {
@@ -333,7 +333,7 @@ const defaultWords = [
     "meanings": [
       "요약하다",
       "단축하다",
-      "축소하다"
+      "감소하다"
     ]
   },
   {
@@ -398,7 +398,7 @@ const defaultWords = [
     "meanings": [
       "절대적인",
       "완전한",
-      "확실한"
+      "명백한"
     ]
   },
   {
@@ -484,7 +484,7 @@ const defaultWords = [
   {
     "word": "abstruse",
     "meanings": [
-      "난해한",
+      "복잡한",
       "심오한",
       "이해하기 어려운"
     ]
@@ -500,7 +500,7 @@ const defaultWords = [
   {
     "word": "abundant",
     "meanings": [
-      "풍부한",
+      "충분한",
       "많은",
       "넘쳐나는"
     ]
@@ -743,8 +743,7 @@ const defaultWords = [
   {
     "word": "accumulate",
     "meanings": [
-      "축적하다",
-      "모으다"
+      "축적하다"
     ]
   },
   {
@@ -763,8 +762,7 @@ const defaultWords = [
   {
     "word": "accurate",
     "meanings": [
-      "정확한",
-      "정밀한"
+      "정확한"
     ]
   },
   {
@@ -873,7 +871,6 @@ const defaultWords = [
   {
     "word": "acquire",
     "meanings": [
-      "얻다",
       "획득하다",
       "습득하다"
     ]
@@ -1702,7 +1699,7 @@ const defaultWords = [
     "word": "aggrandize",
     "meanings": [
       "크게 하다",
-      "확대하다",
+      "증가하다",
       "과장하다"
     ]
   },
@@ -1724,7 +1721,7 @@ const defaultWords = [
     "meanings": [
       "합계",
       "총액",
-      "모으다"
+      "축적하다"
     ]
   },
   {
@@ -2051,7 +2048,7 @@ const defaultWords = [
   {
     "word": "alike",
     "meanings": [
-      "비슷한",
+      "유사한",
       "똑같이"
     ]
   },
@@ -2393,7 +2390,6 @@ const defaultWords = [
   {
     "word": "amass",
     "meanings": [
-      "모으다",
       "축적하다"
     ]
   },
@@ -2674,7 +2670,6 @@ const defaultWords = [
   {
     "word": "ample",
     "meanings": [
-      "풍부한",
       "충분한",
       "넓은"
     ]
@@ -2683,7 +2678,7 @@ const defaultWords = [
     "word": "amplify",
     "meanings": [
       "증폭하다",
-      "확대하다",
+      "증가하다",
       "상세히 설명하다",
       "증폭시키다"
     ]
@@ -2739,9 +2734,7 @@ const defaultWords = [
   {
     "word": "analogous",
     "meanings": [
-      "유사한",
-      "비슷한",
-      "닮은"
+      "유사한"
     ]
   },
   {
@@ -2913,8 +2906,7 @@ const defaultWords = [
   {
     "word": "angry",
     "meanings": [
-      "화난",
-      "성난"
+      "화난"
     ]
   },
   {
@@ -2974,7 +2966,6 @@ const defaultWords = [
     "meanings": [
       "반감",
       "증오",
-      "혐오",
       "악의"
     ]
   },
@@ -3302,8 +3293,7 @@ const defaultWords = [
   {
     "word": "antipathy",
     "meanings": [
-      "반감",
-      "적대감"
+      "반감"
     ]
   },
   {
@@ -3485,7 +3475,7 @@ const defaultWords = [
     "word": "apocryphal",
     "meanings": [
       "출처가 불분명한",
-      "가짜의",
+      "거짓의",
       "위경의"
     ]
   },
@@ -3587,7 +3577,7 @@ const defaultWords = [
   {
     "word": "apparent",
     "meanings": [
-      "분명한",
+      "명백한",
       "외관상의"
     ]
   },
@@ -3732,7 +3722,7 @@ const defaultWords = [
     "meanings": [
       "평가하다",
       "감정하다",
-      "살펴보다"
+      "조사하다"
     ]
   },
   {
@@ -3963,9 +3953,9 @@ const defaultWords = [
     "word": "arcane",
     "meanings": [
       "신비로운",
-      "불가사의한",
+      "신비한",
       "비밀의",
-      "난해한"
+      "복잡한"
     ]
   },
   {
@@ -4098,8 +4088,7 @@ const defaultWords = [
   {
     "word": "arise",
     "meanings": [
-      "발생하다",
-      "일어나다"
+      "발생하다"
     ]
   },
   {
@@ -4688,7 +4677,7 @@ const defaultWords = [
     "meanings": [
       "수축시키는",
       "신랄한",
-      "엄한",
+      "엄격한",
       "수렴제"
     ]
   },
@@ -4973,7 +4962,7 @@ const defaultWords = [
     "word": "augment",
     "meanings": [
       "증가시키다",
-      "늘리다",
+      "증가하다",
       "확장하다"
     ]
   },
@@ -5265,7 +5254,6 @@ const defaultWords = [
   {
     "word": "aversion",
     "meanings": [
-      "혐오",
       "반감",
       "아주 싫어하는 것"
     ]
@@ -5769,7 +5757,7 @@ const defaultWords = [
     "word": "barefaced",
     "meanings": [
       "뻔뻔스러운",
-      "숨김없는",
+      "솔직한",
       "얼굴을 내놓은"
     ]
   },
@@ -5906,7 +5894,7 @@ const defaultWords = [
   {
     "word": "bate",
     "meanings": [
-      "줄이다",
+      "감소하다",
       "약하게 하다",
       "자제하다"
     ]
@@ -6326,8 +6314,7 @@ const defaultWords = [
     "word": "bemused",
     "meanings": [
       "멍한",
-      "어리둥절한",
-      "당황한"
+      "어리둥절한"
     ]
   },
   {
@@ -6892,8 +6879,8 @@ const defaultWords = [
     "meanings": [
       "기괴한",
       "별난",
-      "기이한",
-      "특이한"
+      "신비한",
+      "독특한"
     ]
   },
   {
@@ -7048,7 +7035,7 @@ const defaultWords = [
   {
     "word": "blight",
     "meanings": [
-      "망치다",
+      "파괴하다",
       "종말",
       "병해",
       "어두운 그림자"
@@ -7285,9 +7272,7 @@ const defaultWords = [
   {
     "word": "bogus",
     "meanings": [
-      "가짜의",
-      "위조의",
-      "허위의"
+      "거짓의"
     ]
   },
   {
@@ -7444,7 +7429,7 @@ const defaultWords = [
   {
     "word": "botch",
     "meanings": [
-      "망치다",
+      "파괴하다",
       "서투르게 하다"
     ]
   },
@@ -7507,9 +7492,8 @@ const defaultWords = [
   {
     "word": "bountiful",
     "meanings": [
-      "풍부한",
-      "관대한",
-      "너그러운"
+      "충분한",
+      "관대한"
     ]
   },
   {
@@ -7669,8 +7653,7 @@ const defaultWords = [
   {
     "word": "brave",
     "meanings": [
-      "용감한",
-      "용기 있는"
+      "용감한"
     ]
   },
   {
@@ -7724,7 +7707,7 @@ const defaultWords = [
     "word": "break",
     "meanings": [
       "깨다",
-      "부수다",
+      "파괴하다",
       "휴식"
     ]
   },
@@ -7922,7 +7905,7 @@ const defaultWords = [
     "word": "broaden",
     "meanings": [
       "넓히다",
-      "확대하다"
+      "증가하다"
     ]
   },
   {
@@ -8273,7 +8256,7 @@ const defaultWords = [
   {
     "word": "burgeon",
     "meanings": [
-      "급증하다",
+      "증가하다",
       "번성하다",
       "급성장하다",
       "번창하다"
@@ -8355,7 +8338,7 @@ const defaultWords = [
     "word": "bust",
     "meanings": [
       "파산하다",
-      "부수다",
+      "파괴하다",
       "흉상"
     ]
   },
@@ -8387,7 +8370,7 @@ const defaultWords = [
       "지지대",
       "부벽",
       "지지하다",
-      "보강하다"
+      "강화하다"
     ]
   },
   {
@@ -8681,8 +8664,7 @@ const defaultWords = [
   {
     "word": "candid",
     "meanings": [
-      "솔직한",
-      "숨김없는"
+      "솔직한"
     ]
   },
   {
@@ -9235,7 +9217,7 @@ const defaultWords = [
   {
     "word": "catholic",
     "meanings": [
-      "보편적인",
+      "일반적인",
       "넓은",
       "가톨릭의"
     ]
@@ -9366,7 +9348,7 @@ const defaultWords = [
     "word": "celebrate",
     "meanings": [
       "기념하다",
-      "찬양하다"
+      "칭찬하다"
     ]
   },
   {
@@ -9515,7 +9497,7 @@ const defaultWords = [
       "의식의",
       "지나치게 격식을 갖춘",
       "격식을 차리는",
-      "엄숙한"
+      "엄격한"
     ]
   },
   {
@@ -9528,7 +9510,7 @@ const defaultWords = [
   {
     "word": "certain",
     "meanings": [
-      "확실한",
+      "명백한",
       "특정한"
     ]
   },
@@ -9824,7 +9806,7 @@ const defaultWords = [
   {
     "word": "check",
     "meanings": [
-      "저지하다",
+      "방해하다",
       "억제하다"
     ]
   },
@@ -9863,7 +9845,7 @@ const defaultWords = [
     "meanings": [
       "소중히 여기다",
       "마음속에 품다",
-      "간직하다"
+      "유지하다"
     ]
   },
   {
@@ -10311,7 +10293,7 @@ const defaultWords = [
     "word": "clarify",
     "meanings": [
       "명확하게 하다",
-      "해명하다"
+      "설명하다"
     ]
   },
   {
@@ -10400,8 +10382,7 @@ const defaultWords = [
   {
     "word": "clear",
     "meanings": [
-      "명확한",
-      "분명한",
+      "명백한",
       "치우다"
     ]
   },
@@ -11035,7 +11016,7 @@ const defaultWords = [
     "word": "collect",
     "meanings": [
       "수집하다",
-      "모으다"
+      "축적하다"
     ]
   },
   {
@@ -11116,8 +11097,7 @@ const defaultWords = [
   {
     "word": "colossal",
     "meanings": [
-      "거대한",
-      "엄청난"
+      "거대한"
     ]
   },
   {
@@ -11464,7 +11444,7 @@ const defaultWords = [
   {
     "word": "comparable",
     "meanings": [
-      "비슷한",
+      "유사한",
       "비교할 만한"
     ]
   },
@@ -11812,8 +11792,7 @@ const defaultWords = [
   {
     "word": "compulsory",
     "meanings": [
-      "의무적인",
-      "강제적인"
+      "의무적인"
     ]
   },
   {
@@ -12026,7 +12005,7 @@ const defaultWords = [
     "word": "conclusive",
     "meanings": [
       "결정적인",
-      "확실한"
+      "명백한"
     ]
   },
   {
@@ -12138,7 +12117,6 @@ const defaultWords = [
     "word": "condign",
     "meanings": [
       "적절한",
-      "타당한",
       "지당한",
       "응분의"
     ]
@@ -12371,7 +12349,7 @@ const defaultWords = [
       "어리둥절하게 하다",
       "혼란스럽게 하다",
       "혼동하다",
-      "망치다"
+      "파괴하다"
     ]
   },
   {
@@ -12675,7 +12653,7 @@ const defaultWords = [
     "word": "consecutive",
     "meanings": [
       "연이은",
-      "연속적인"
+      "지속적인"
     ]
   },
   {
@@ -12704,8 +12682,7 @@ const defaultWords = [
     "meanings": [
       "중요한",
       "결과로서 일어나는",
-      "필연적인",
-      "중대한"
+      "피할 수 없는"
     ]
   },
   {
@@ -12740,7 +12717,7 @@ const defaultWords = [
   {
     "word": "conserve",
     "meanings": [
-      "보존하다",
+      "유지하다",
       "보호하다"
     ]
   },
@@ -12861,7 +12838,7 @@ const defaultWords = [
     "word": "conspicuous",
     "meanings": [
       "눈에 띄는",
-      "뚜렷한"
+      "명백한"
     ]
   },
   {
@@ -12882,7 +12859,7 @@ const defaultWords = [
   {
     "word": "constant",
     "meanings": [
-      "끊임없는",
+      "지속적인",
       "변함없는",
       "상수"
     ]
@@ -13211,9 +13188,7 @@ const defaultWords = [
   {
     "word": "continuous",
     "meanings": [
-      "지속적인",
-      "끊임없는",
-      "연속적인"
+      "지속적인"
     ]
   },
   {
@@ -13466,8 +13441,7 @@ const defaultWords = [
     "word": "conventional",
     "meanings": [
       "전통적인",
-      "틀에 박힌",
-      "관습적인"
+      "틀에 박힌"
     ]
   },
   {
@@ -13569,7 +13543,7 @@ const defaultWords = [
     "word": "convivial",
     "meanings": [
       "명랑한",
-      "유쾌한",
+      "기쁜",
       "친목의",
       "사교적인"
     ]
@@ -13585,7 +13559,6 @@ const defaultWords = [
     "word": "convoluted",
     "meanings": [
       "복잡한",
-      "뒤얽힌",
       "구불구불한",
       "나선형의"
     ]
@@ -13658,8 +13631,8 @@ const defaultWords = [
   {
     "word": "copious",
     "meanings": [
-      "풍부한",
-      "방대한",
+      "충분한",
+      "거대한",
       "다량의"
     ]
   },
@@ -14750,7 +14723,7 @@ const defaultWords = [
   {
     "word": "crucial",
     "meanings": [
-      "중대한",
+      "중요한",
       "결정적인"
     ]
   },
@@ -14828,7 +14801,7 @@ const defaultWords = [
     "word": "crush",
     "meanings": [
       "으깨다",
-      "부수다",
+      "파괴하다",
       "홀딱 반함",
       "진압하다"
     ]
@@ -15099,7 +15072,7 @@ const defaultWords = [
     "meanings": [
       "호기심 많은",
       "궁금한",
-      "기이한"
+      "신비한"
     ]
   },
   {
@@ -15167,7 +15140,7 @@ const defaultWords = [
   {
     "word": "curtail",
     "meanings": [
-      "축소하다",
+      "감소하다",
       "삭감하다",
       "단축하다"
     ]
@@ -15600,7 +15573,7 @@ const defaultWords = [
     "word": "deaden",
     "meanings": [
       "죽이다",
-      "줄이다"
+      "감소하다"
     ]
   },
   {
@@ -15728,8 +15701,7 @@ const defaultWords = [
   {
     "word": "debilitate",
     "meanings": [
-      "약화시키다",
-      "쇠약하게 하다"
+      "약화시키다"
     ]
   },
   {
@@ -16058,7 +16030,6 @@ const defaultWords = [
     "word": "decrease",
     "meanings": [
       "감소하다",
-      "줄어들다",
       "하락"
     ]
   },
@@ -16338,9 +16309,7 @@ const defaultWords = [
   {
     "word": "definite",
     "meanings": [
-      "확실한",
-      "명확한",
-      "뚜렷한"
+      "명백한"
     ]
   },
   {
@@ -16592,7 +16561,7 @@ const defaultWords = [
     "word": "delicious",
     "meanings": [
       "맛있는",
-      "즐거운"
+      "기쁜"
     ]
   },
   {
@@ -16959,7 +16928,7 @@ const defaultWords = [
     "word": "dent",
     "meanings": [
       "움푹 들어가게 하다",
-      "훼손하다"
+      "파괴하다"
     ]
   },
   {
@@ -17318,7 +17287,7 @@ const defaultWords = [
     "word": "desecrate",
     "meanings": [
       "신성 모독하다",
-      "훼손하다",
+      "파괴하다",
       "더럽히다"
     ]
   },
@@ -17381,7 +17350,7 @@ const defaultWords = [
     "word": "desist",
     "meanings": [
       "그만두다",
-      "단념하다",
+      "포기하다",
       "중지하다"
     ]
   },
@@ -17440,8 +17409,7 @@ const defaultWords = [
     "word": "despoil",
     "meanings": [
       "약탈하다",
-      "파괴하다",
-      "훼손하다"
+      "파괴하다"
     ]
   },
   {
@@ -18054,7 +18022,7 @@ const defaultWords = [
     "meanings": [
       "다른",
       "상이한",
-      "특이한"
+      "독특한"
     ]
   },
   {
@@ -18259,7 +18227,7 @@ const defaultWords = [
   {
     "word": "diminish",
     "meanings": [
-      "줄어들다",
+      "감소하다",
       "약화시키다"
     ]
   },
@@ -18561,7 +18529,7 @@ const defaultWords = [
   {
     "word": "disclose",
     "meanings": [
-      "밝히다",
+      "설명하다",
       "폭로하다",
       "드러내다"
     ]
@@ -18832,7 +18800,7 @@ const defaultWords = [
   {
     "word": "disengage",
     "meanings": [
-      "풀다",
+      "해결하다",
       "해방하다",
       "철수하다",
       "분리하다"
@@ -19065,7 +19033,7 @@ const defaultWords = [
   {
     "word": "dismal",
     "meanings": [
-      "음울한",
+      "우울한",
       "참담한"
     ]
   },
@@ -19540,9 +19508,8 @@ const defaultWords = [
   {
     "word": "distinct",
     "meanings": [
-      "뚜렷한",
+      "명백한",
       "구별되는",
-      "분명한",
       "별개의"
     ]
   },
@@ -19796,7 +19763,7 @@ const defaultWords = [
     "word": "divulge",
     "meanings": [
       "누설하다",
-      "밝히다",
+      "설명하다",
       "폭로하다",
       "알려주다"
     ]
@@ -20264,7 +20231,7 @@ const defaultWords = [
   {
     "word": "dreary",
     "meanings": [
-      "음울한",
+      "우울한",
       "따분한"
     ]
   },
@@ -20732,7 +20699,7 @@ const defaultWords = [
   {
     "word": "ebb",
     "meanings": [
-      "줄어들다",
+      "감소하다",
       "쇠퇴하다",
       "썰물",
       "빠지다"
@@ -20760,8 +20727,8 @@ const defaultWords = [
     "meanings": [
       "별난",
       "괴짜의",
-      "특이한",
-      "기이한"
+      "독특한",
+      "신비한"
     ]
   },
   {
@@ -21381,7 +21348,6 @@ const defaultWords = [
     "meanings": [
       "명확하게 하다",
       "설명하다",
-      "밝히다",
       "명료하게 하다"
     ]
   },
@@ -21669,7 +21635,7 @@ const defaultWords = [
   {
     "word": "eminent",
     "meanings": [
-      "저명한",
+      "유명한",
       "탁월한",
       "뛰어난",
       "우수한"
@@ -21915,7 +21881,7 @@ const defaultWords = [
     "word": "encourage",
     "meanings": [
       "격려하다",
-      "장려하다"
+      "촉진하다"
     ]
   },
   {
@@ -21979,8 +21945,7 @@ const defaultWords = [
   {
     "word": "endemic",
     "meanings": [
-      "풍토병의",
-      "고유의"
+      "풍토병의"
     ]
   },
   {
@@ -22213,7 +22178,7 @@ const defaultWords = [
   {
     "word": "enlarge",
     "meanings": [
-      "확대하다",
+      "증가하다",
       "확장하다"
     ]
   },
@@ -22280,7 +22245,6 @@ const defaultWords = [
   {
     "word": "enormous",
     "meanings": [
-      "막대한",
       "거대한"
     ]
   },
@@ -22541,7 +22505,7 @@ const defaultWords = [
     "word": "enunciate",
     "meanings": [
       "또렷이 발음하다",
-      "밝히다",
+      "설명하다",
       "선언하다",
       "분명히 발음하다"
     ]
@@ -22998,7 +22962,7 @@ const defaultWords = [
     "meanings": [
       "대용품의",
       "모조의",
-      "가짜의",
+      "거짓의",
       "대용의"
     ]
   },
@@ -23064,7 +23028,7 @@ const defaultWords = [
     "word": "esoteric",
     "meanings": [
       "비밀의",
-      "난해한",
+      "복잡한",
       "소수만 아는"
     ]
   },
@@ -23210,8 +23174,8 @@ const defaultWords = [
   {
     "word": "eternal",
     "meanings": [
-      "영원한",
-      "끊임없는"
+      "영구적인",
+      "지속적인"
     ]
   },
   {
@@ -23473,7 +23437,6 @@ const defaultWords = [
   {
     "word": "evident",
     "meanings": [
-      "분명한",
       "명백한"
     ]
   },
@@ -23561,14 +23524,13 @@ const defaultWords = [
       "칭송하다",
       "높이다",
       "격상시키다",
-      "찬양하다"
+      "칭찬하다"
     ]
   },
   {
     "word": "examine",
     "meanings": [
-      "조사하다",
-      "검토하다"
+      "조사하다"
     ]
   },
   {
@@ -23734,7 +23696,7 @@ const defaultWords = [
   {
     "word": "excoriate",
     "meanings": [
-      "혹평하다",
+      "비난하다",
       "껍질을 벗기다"
     ]
   },
@@ -24480,9 +24442,7 @@ const defaultWords = [
   {
     "word": "extol",
     "meanings": [
-      "격찬하다",
       "칭찬하다",
-      "극찬하다",
       "칭송하다"
     ]
   },
@@ -24541,7 +24501,7 @@ const defaultWords = [
     "word": "extraordinary",
     "meanings": [
       "비범한",
-      "기이한"
+      "신비한"
     ]
   },
   {
@@ -24633,7 +24593,7 @@ const defaultWords = [
     "meanings": [
       "활기 넘치는",
       "무성한",
-      "풍부한",
+      "충분한",
       "열광적인"
     ]
   },
@@ -24729,7 +24689,7 @@ const defaultWords = [
     "word": "facile",
     "meanings": [
       "피상적인",
-      "손쉬운",
+      "단순한",
       "안일한",
       "수월한"
     ]
@@ -24775,7 +24735,7 @@ const defaultWords = [
     "meanings": [
       "인위적인",
       "꾸며낸",
-      "가짜의"
+      "거짓의"
     ]
   },
   {
@@ -24837,7 +24797,7 @@ const defaultWords = [
     "meanings": [
       "공정한",
       "박람회",
-      "타당한"
+      "적절한"
     ]
   },
   {
@@ -24856,7 +24816,7 @@ const defaultWords = [
   {
     "word": "fake",
     "meanings": [
-      "가짜의",
+      "거짓의",
       "위조하다"
     ]
   },
@@ -24872,7 +24832,7 @@ const defaultWords = [
     "word": "fallacious",
     "meanings": [
       "잘못된",
-      "허위의",
+      "거짓의",
       "속이는",
       "불합리한"
     ]
@@ -24976,8 +24936,7 @@ const defaultWords = [
   {
     "word": "famous",
     "meanings": [
-      "유명한",
-      "이름난"
+      "유명한"
     ]
   },
   {
@@ -25201,7 +25160,7 @@ const defaultWords = [
   {
     "word": "faux",
     "meanings": [
-      "가짜의",
+      "거짓의",
       "모조의",
       "인조의"
     ]
@@ -25269,7 +25228,7 @@ const defaultWords = [
     "meanings": [
       "실행 가능한",
       "그럴듯한",
-      "적합한",
+      "적절한",
       "실현 가능한"
     ]
   },
@@ -25351,7 +25310,7 @@ const defaultWords = [
     "word": "feeble",
     "meanings": [
       "연약한",
-      "미미한"
+      "사소한"
     ]
   },
   {
@@ -25566,7 +25525,7 @@ const defaultWords = [
     "word": "festive",
     "meanings": [
       "축제의",
-      "즐거운",
+      "기쁜",
       "명랑한"
     ]
   },
@@ -25719,7 +25678,7 @@ const defaultWords = [
     "word": "fictitious",
     "meanings": [
       "허구의",
-      "가짜의",
+      "거짓의",
       "지어낸",
       "창작적인"
     ]
@@ -26024,7 +25983,7 @@ const defaultWords = [
     "word": "fit",
     "meanings": [
       "맞다",
-      "적합한",
+      "적절한",
       "발작"
     ]
   },
@@ -26083,7 +26042,7 @@ const defaultWords = [
   {
     "word": "flag",
     "meanings": [
-      "약해지다",
+      "약화시키다",
       "시들다",
       "깃발을 달다",
       "깃발"
@@ -26730,7 +26689,7 @@ const defaultWords = [
   {
     "word": "foment",
     "meanings": [
-      "조장하다",
+      "촉진하다",
       "선동하다",
       "자극하다"
     ]
@@ -26849,7 +26808,7 @@ const defaultWords = [
   {
     "word": "forcible",
     "meanings": [
-      "강제적인",
+      "의무적인",
       "강력한"
     ]
   },
@@ -26975,7 +26934,7 @@ const defaultWords = [
     "meanings": [
       "미연에 방지하다",
       "기선을 제압하다",
-      "가로막다",
+      "방해하다",
       "선수를 치다"
     ]
   },
@@ -27013,7 +26972,7 @@ const defaultWords = [
     "meanings": [
       "위조하다",
       "구축하다",
-      "만들어내다",
+      "창조하다",
       "대장간"
     ]
   },
@@ -27042,7 +27001,6 @@ const defaultWords = [
     "word": "forgo",
     "meanings": [
       "포기하다",
-      "단념하다",
       "그만두다"
     ]
   },
@@ -27096,7 +27054,7 @@ const defaultWords = [
       "경이로운",
       "가공할 만한",
       "어려운",
-      "무서운"
+      "두려운"
     ]
   },
   {
@@ -27117,7 +27075,6 @@ const defaultWords = [
   {
     "word": "forsake",
     "meanings": [
-      "저버리다",
       "포기하다",
       "떠나다"
     ]
@@ -27220,10 +27177,9 @@ const defaultWords = [
   {
     "word": "foster",
     "meanings": [
-      "조장하다",
+      "촉진하다",
       "육성하다",
-      "양육하다",
-      "촉진하다"
+      "양육하다"
     ]
   },
   {
@@ -27369,8 +27325,7 @@ const defaultWords = [
   {
     "word": "frank",
     "meanings": [
-      "솔직한",
-      "숨김없는"
+      "솔직한"
     ]
   },
   {
@@ -27610,7 +27565,6 @@ const defaultWords = [
     "word": "frivolous",
     "meanings": [
       "경솔한",
-      "하찮은",
       "사소한",
       "경박한"
     ]
@@ -27881,7 +27835,7 @@ const defaultWords = [
     "word": "funny",
     "meanings": [
       "우스운",
-      "기이한"
+      "신비한"
     ]
   },
   {
@@ -28099,7 +28053,7 @@ const defaultWords = [
   {
     "word": "gain",
     "meanings": [
-      "얻다",
+      "획득하다",
       "이익"
     ]
   },
@@ -28318,9 +28272,7 @@ const defaultWords = [
   {
     "word": "gargantuan",
     "meanings": [
-      "엄청난",
-      "거대한",
-      "방대한"
+      "거대한"
     ]
   },
   {
@@ -28348,9 +28300,8 @@ const defaultWords = [
   {
     "word": "garner",
     "meanings": [
-      "모으다",
-      "얻다",
-      "축적하다"
+      "축적하다",
+      "획득하다"
     ]
   },
   {
@@ -28431,7 +28382,7 @@ const defaultWords = [
   {
     "word": "gather",
     "meanings": [
-      "모으다",
+      "축적하다",
       "모이다",
       "수집하다"
     ]
@@ -28586,7 +28537,7 @@ const defaultWords = [
     "word": "generate",
     "meanings": [
       "발생시키다",
-      "만들어내다",
+      "창조하다",
       "일으키다"
     ]
   },
@@ -28608,9 +28559,7 @@ const defaultWords = [
   {
     "word": "generous",
     "meanings": [
-      "관대한",
-      "너그러운",
-      "후한"
+      "관대한"
     ]
   },
   {
@@ -28844,7 +28793,7 @@ const defaultWords = [
   {
     "word": "get",
     "meanings": [
-      "얻다",
+      "획득하다",
       "받다",
       "이해하다"
     ]
@@ -28909,8 +28858,7 @@ const defaultWords = [
   {
     "word": "gigantic",
     "meanings": [
-      "거대한",
-      "막대한"
+      "거대한"
     ]
   },
   {
@@ -29111,7 +29059,7 @@ const defaultWords = [
     "meanings": [
       "이삭을 줍다",
       "조금씩 모으다",
-      "얻다",
+      "획득하다",
       "주워 모으다"
     ]
   },
@@ -29314,7 +29262,7 @@ const defaultWords = [
   {
     "word": "glum",
     "meanings": [
-      "침울한",
+      "우울한",
       "시무룩한"
     ]
   },
@@ -29774,8 +29722,8 @@ const defaultWords = [
     "word": "grave",
     "meanings": [
       "무덤",
-      "엄숙한",
-      "중대한"
+      "엄격한",
+      "중요한"
     ]
   },
   {
@@ -29878,7 +29826,7 @@ const defaultWords = [
   {
     "word": "grim",
     "meanings": [
-      "엄한",
+      "엄격한",
       "암담한",
       "냉혹한"
     ]
@@ -30075,7 +30023,7 @@ const defaultWords = [
   {
     "word": "grueling",
     "meanings": [
-      "엄한",
+      "엄격한",
       "녹초로 만드는",
       "대단히 힘든"
     ]
@@ -30178,7 +30126,6 @@ const defaultWords = [
     "word": "guileless",
     "meanings": [
       "솔직한",
-      "정직한",
       "속임수를 모르는",
       "악의 없는"
     ]
@@ -30509,8 +30456,7 @@ const defaultWords = [
     "meanings": [
       "방해하다",
       "방해물",
-      "바구니",
-      "저지하다"
+      "바구니"
     ]
   },
   {
@@ -31216,7 +31162,7 @@ const defaultWords = [
     "word": "hermetic",
     "meanings": [
       "밀봉된",
-      "난해한",
+      "복잡한",
       "연금술의"
     ]
   },
@@ -31652,7 +31598,6 @@ const defaultWords = [
   {
     "word": "honest",
     "meanings": [
-      "정직한",
       "솔직한"
     ]
   },
@@ -31884,8 +31829,7 @@ const defaultWords = [
   {
     "word": "huge",
     "meanings": [
-      "거대한",
-      "막대한"
+      "거대한"
     ]
   },
   {
@@ -32265,9 +32209,8 @@ const defaultWords = [
   {
     "word": "idiosyncratic",
     "meanings": [
-      "특이한",
-      "기이한",
-      "독특한"
+      "독특한",
+      "신비한"
     ]
   },
   {
@@ -32409,7 +32352,6 @@ const defaultWords = [
     "word": "illuminate",
     "meanings": [
       "비추다",
-      "밝히다",
       "설명하다",
       "조명하다"
     ]
@@ -32527,8 +32469,7 @@ const defaultWords = [
   {
     "word": "immense",
     "meanings": [
-      "거대한",
-      "엄청난"
+      "거대한"
     ]
   },
   {
@@ -32625,7 +32566,7 @@ const defaultWords = [
   {
     "word": "immutable",
     "meanings": [
-      "불변의",
+      "영구적인",
       "바꿀 수 없는",
       "변경할 수 없는"
     ]
@@ -32745,7 +32686,6 @@ const defaultWords = [
     "meanings": [
       "방해하다",
       "지연시키다",
-      "가로막다",
       "저해하다"
     ]
   },
@@ -32803,7 +32743,7 @@ const defaultWords = [
     "word": "imperceptible",
     "meanings": [
       "감지할 수 없는",
-      "미미한",
+      "사소한",
       "눈에 보이지 않는",
       "미세한"
     ]
@@ -33009,7 +32949,6 @@ const defaultWords = [
     "word": "important",
     "meanings": [
       "중요한",
-      "중대한",
       "영향력 있는"
     ]
   },
@@ -33244,7 +33183,7 @@ const defaultWords = [
     "word": "inadequate",
     "meanings": [
       "부적절한",
-      "불충분한"
+      "부족한"
     ]
   },
   {
@@ -33423,7 +33362,7 @@ const defaultWords = [
   {
     "word": "incessant",
     "meanings": [
-      "끊임없는",
+      "지속적인",
       "쉴 새 없는"
     ]
   },
@@ -33630,7 +33569,6 @@ const defaultWords = [
   {
     "word": "inconsequential",
     "meanings": [
-      "하찮은",
       "사소한",
       "중요하지 않은"
     ]
@@ -33639,8 +33577,7 @@ const defaultWords = [
     "word": "incontestable",
     "meanings": [
       "반박의 여지가 없는",
-      "명백한",
-      "확실한"
+      "명백한"
     ]
   },
   {
@@ -33687,8 +33624,7 @@ const defaultWords = [
   {
     "word": "increase",
     "meanings": [
-      "증가하다",
-      "늘리다"
+      "증가하다"
     ]
   },
   {
@@ -33965,7 +33901,7 @@ const defaultWords = [
     "word": "indignant",
     "meanings": [
       "분개한",
-      "성난",
+      "화난",
       "억울하게 여기는"
     ]
   },
@@ -34005,8 +33941,7 @@ const defaultWords = [
   {
     "word": "indispensable",
     "meanings": [
-      "필수불가결한",
-      "없어서는 안 될"
+      "필수적인"
     ]
   },
   {
@@ -34021,7 +33956,7 @@ const defaultWords = [
     "meanings": [
       "해체할 수 없는",
       "확고한",
-      "영원한"
+      "영구적인"
     ]
   },
   {
@@ -34097,7 +34032,6 @@ const defaultWords = [
     "meanings": [
       "의심할 나위 없는",
       "명백한",
-      "확실한",
       "의심할 여지 없는"
     ]
   },
@@ -34226,8 +34160,7 @@ const defaultWords = [
   {
     "word": "ineluctable",
     "meanings": [
-      "피할 수 없는",
-      "불가피한"
+      "피할 수 없는"
     ]
   },
   {
@@ -34280,7 +34213,6 @@ const defaultWords = [
     "word": "inevitable",
     "meanings": [
       "피할 수 없는",
-      "필연적인",
       "당연한"
     ]
   },
@@ -34297,8 +34229,8 @@ const defaultWords = [
     "word": "inexplicable",
     "meanings": [
       "설명할 수 없는",
-      "난해한",
-      "불가사의한"
+      "복잡한",
+      "신비한"
     ]
   },
   {
@@ -34312,7 +34244,7 @@ const defaultWords = [
     "word": "infallible",
     "meanings": [
       "결코 틀리지 않는",
-      "확실한",
+      "명백한",
       "절대 오류가 없는",
       "틀림없는"
     ]
@@ -34414,7 +34346,7 @@ const defaultWords = [
     "word": "infinite",
     "meanings": [
       "무한한",
-      "막대한"
+      "거대한"
     ]
   },
   {
@@ -34681,7 +34613,7 @@ const defaultWords = [
     "word": "inherent",
     "meanings": [
       "내재하는",
-      "고유의",
+      "풍토병의",
       "타고난",
       "본질적인"
     ]
@@ -34824,7 +34756,7 @@ const defaultWords = [
     "word": "innate",
     "meanings": [
       "타고난",
-      "고유의",
+      "풍토병의",
       "선천적인",
       "천성의"
     ]
@@ -34980,7 +34912,7 @@ const defaultWords = [
     "meanings": [
       "헤아릴 수 없는",
       "수수께끼 같은",
-      "난해한",
+      "복잡한",
       "불가해한"
     ]
   },
@@ -35143,8 +35075,7 @@ const defaultWords = [
   {
     "word": "inspect",
     "meanings": [
-      "검사하다",
-      "점검하다"
+      "조사하다"
     ]
   },
   {
@@ -35356,8 +35287,7 @@ const defaultWords = [
     "meanings": [
       "필수적인",
       "완전한",
-      "적분의",
-      "필수 불가결한"
+      "적분의"
     ]
   },
   {
@@ -35518,9 +35448,8 @@ const defaultWords = [
     "word": "interim",
     "meanings": [
       "중간의",
-      "임시의",
-      "한동안",
-      "잠정적인"
+      "일시적인",
+      "한동안"
     ]
   },
   {
@@ -35759,7 +35688,7 @@ const defaultWords = [
     "meanings": [
       "대담한",
       "두려움을 모르는",
-      "용맹한",
+      "용감한",
       "용감무쌍한"
     ]
   },
@@ -35773,8 +35702,7 @@ const defaultWords = [
     "word": "intricate",
     "meanings": [
       "복잡한",
-      "얽힌",
-      "난해한"
+      "얽힌"
     ]
   },
   {
@@ -35990,7 +35918,7 @@ const defaultWords = [
   {
     "word": "invidious",
     "meanings": [
-      "부당한",
+      "부적절한",
       "기분 나쁜",
       "시기를 살 만한",
       "불쾌한"
@@ -36104,8 +36032,7 @@ const defaultWords = [
   {
     "word": "irate",
     "meanings": [
-      "격분한",
-      "성난",
+      "화난",
       "노발대발하는",
       "격노한"
     ]
@@ -36590,9 +36517,8 @@ const defaultWords = [
     "word": "jocund",
     "meanings": [
       "쾌활한",
-      "즐거운",
-      "명랑한",
-      "유쾌한"
+      "기쁜",
+      "명랑한"
     ]
   },
   {
@@ -36661,7 +36587,7 @@ const defaultWords = [
     "meanings": [
       "쾌활한",
       "명랑한",
-      "유쾌한",
+      "기쁜",
       "친선적인"
     ]
   },
@@ -36829,7 +36755,7 @@ const defaultWords = [
     "word": "justify",
     "meanings": [
       "정당화하다",
-      "해명하다"
+      "설명하다"
     ]
   },
   {
@@ -37162,7 +37088,7 @@ const defaultWords = [
     "meanings": [
       "매듭이 많은",
       "까다로운",
-      "난해한",
+      "복잡한",
       "얽히고설킨"
     ]
   },
@@ -37613,7 +37539,6 @@ const defaultWords = [
     "word": "laud",
     "meanings": [
       "칭찬하다",
-      "기리다",
       "찬양",
       "칭송하다"
     ]
@@ -37668,7 +37593,7 @@ const defaultWords = [
     "meanings": [
       "사치스러운",
       "아낌없이 주다",
-      "풍부한",
+      "충분한",
       "풍성한"
     ]
   },
@@ -38006,7 +37931,6 @@ const defaultWords = [
     "meanings": [
       "관대한",
       "인정 많은",
-      "너그러운",
       "처벌이 가벼운"
     ]
   },
@@ -38021,7 +37945,7 @@ const defaultWords = [
     "meanings": [
       "사자 같은",
       "사자의",
-      "용맹한",
+      "용감한",
       "당당한"
     ]
   },
@@ -38215,8 +38139,7 @@ const defaultWords = [
     "word": "liberal",
     "meanings": [
       "자유주의의",
-      "관대한",
-      "후한"
+      "관대한"
     ]
   },
   {
@@ -38391,7 +38314,7 @@ const defaultWords = [
     "meanings": [
       "소인국의",
       "아주 작은",
-      "하찮은",
+      "사소한",
       "매우 작은"
     ]
   },
@@ -38658,7 +38581,7 @@ const defaultWords = [
   {
     "word": "livid",
     "meanings": [
-      "격분한",
+      "화난",
       "검푸른",
       "창백한",
       "격노한"
@@ -38771,7 +38694,7 @@ const defaultWords = [
     "meanings": [
       "논리적인",
       "합리적인",
-      "타당한"
+      "적절한"
     ]
   },
   {
@@ -38999,9 +38922,8 @@ const defaultWords = [
   {
     "word": "lugubrious",
     "meanings": [
-      "침울한",
-      "슬픈",
-      "우울한"
+      "우울한",
+      "슬픈"
     ]
   },
   {
@@ -39124,7 +39046,7 @@ const defaultWords = [
     "word": "lush",
     "meanings": [
       "무성한",
-      "풍부한",
+      "충분한",
       "우거진"
     ]
   },
@@ -39148,7 +39070,7 @@ const defaultWords = [
       "무성한",
       "풍성한",
       "화려한",
-      "풍부한"
+      "충분한"
     ]
   },
   {
@@ -39190,7 +39112,7 @@ const defaultWords = [
     "word": "macerate",
     "meanings": [
       "물에 불리다",
-      "쇠약하게 하다"
+      "약화시키다"
     ]
   },
   {
@@ -39300,8 +39222,7 @@ const defaultWords = [
     "word": "magnanimous",
     "meanings": [
       "관대한",
-      "도량이 넓은",
-      "너그러운"
+      "도량이 넓은"
     ]
   },
   {
@@ -39329,7 +39250,7 @@ const defaultWords = [
   {
     "word": "magnify",
     "meanings": [
-      "확대하다",
+      "증가하다",
       "과장하다"
     ]
   },
@@ -39590,7 +39511,6 @@ const defaultWords = [
     "meanings": [
       "거대한",
       "맘모스",
-      "엄청난",
       "매머드"
     ]
   },
@@ -39630,8 +39550,7 @@ const defaultWords = [
     "word": "mandatory",
     "meanings": [
       "의무적인",
-      "강제적인",
-      "필수의"
+      "필수적인"
     ]
   },
   {
@@ -39806,7 +39725,7 @@ const defaultWords = [
   {
     "word": "marginal",
     "meanings": [
-      "미미한",
+      "사소한",
       "주변부의"
     ]
   },
@@ -39862,7 +39781,7 @@ const defaultWords = [
   {
     "word": "marked",
     "meanings": [
-      "뚜렷한",
+      "명백한",
       "두드러진"
     ]
   },
@@ -39903,7 +39822,7 @@ const defaultWords = [
     "word": "marshal",
     "meanings": [
       "정렬시키다",
-      "모으다",
+      "축적하다",
       "원수"
     ]
   },
@@ -39976,8 +39895,7 @@ const defaultWords = [
   {
     "word": "massive",
     "meanings": [
-      "거대한",
-      "막대한"
+      "거대한"
     ]
   },
   {
@@ -40165,7 +40083,7 @@ const defaultWords = [
     "word": "meager",
     "meanings": [
       "빈약한",
-      "불충분한",
+      "부족한",
       "메마른"
     ]
   },
@@ -40474,7 +40392,6 @@ const defaultWords = [
     "word": "mendacious",
     "meanings": [
       "거짓말하는",
-      "허위의",
       "거짓의"
     ]
   },
@@ -41075,7 +40992,7 @@ const defaultWords = [
     "word": "minimize",
     "meanings": [
       "최소화하다",
-      "축소하다"
+      "감소하다"
     ]
   },
   {
@@ -41126,7 +41043,7 @@ const defaultWords = [
     "word": "minuscule",
     "meanings": [
       "아주 작은",
-      "하찮은",
+      "사소한",
       "소문자"
     ]
   },
@@ -41480,7 +41397,7 @@ const defaultWords = [
     "word": "mock",
     "meanings": [
       "조롱하다",
-      "가짜의",
+      "거짓의",
       "모의의"
     ]
   },
@@ -41632,7 +41549,6 @@ const defaultWords = [
   {
     "word": "momentous",
     "meanings": [
-      "중대한",
       "중요한"
     ]
   },
@@ -41790,7 +41706,7 @@ const defaultWords = [
     "word": "monumental",
     "meanings": [
       "기념비적인",
-      "엄청난",
+      "거대한",
       "불후의"
     ]
   },
@@ -42223,7 +42139,7 @@ const defaultWords = [
       "어두운",
       "탁한",
       "모호한",
-      "음울한"
+      "우울한"
     ]
   },
   {
@@ -42260,7 +42176,7 @@ const defaultWords = [
     "word": "mushroom",
     "meanings": [
       "버섯",
-      "급증하다"
+      "증가하다"
     ]
   },
   {
@@ -42286,7 +42202,7 @@ const defaultWords = [
   {
     "word": "muster",
     "meanings": [
-      "모으다",
+      "축적하다",
       "소집하다",
       "소집"
     ]
@@ -42644,7 +42560,7 @@ const defaultWords = [
     "word": "necessary",
     "meanings": [
       "필수적인",
-      "불가피한"
+      "피할 수 없는"
     ]
   },
   {
@@ -42718,8 +42634,7 @@ const defaultWords = [
     "word": "negligible",
     "meanings": [
       "무시해도 될 정도의",
-      "사소한",
-      "하찮은"
+      "사소한"
     ]
   },
   {
@@ -42809,7 +42724,7 @@ const defaultWords = [
   {
     "word": "nervous",
     "meanings": [
-      "불안한",
+      "위험한",
       "신경질적인"
     ]
   },
@@ -43715,7 +43630,6 @@ const defaultWords = [
   {
     "word": "obtain",
     "meanings": [
-      "얻다",
       "획득하다"
     ]
   },
@@ -43743,8 +43657,7 @@ const defaultWords = [
   {
     "word": "obvious",
     "meanings": [
-      "명백한",
-      "분명한"
+      "명백한"
     ]
   },
   {
@@ -43793,8 +43706,7 @@ const defaultWords = [
   {
     "word": "occur",
     "meanings": [
-      "발생하다",
-      "일어나다"
+      "발생하다"
     ]
   },
   {
@@ -43823,7 +43735,7 @@ const defaultWords = [
     "meanings": [
       "증오",
       "오명",
-      "혐오"
+      "반감"
     ]
   },
   {
@@ -44068,7 +43980,6 @@ const defaultWords = [
     "word": "ongoing",
     "meanings": [
       "지속적인",
-      "계속되는",
       "진행 중인"
     ]
   },
@@ -44626,7 +44537,7 @@ const defaultWords = [
   {
     "word": "outlandish",
     "meanings": [
-      "기이한",
+      "신비한",
       "엉뚱한"
     ]
   },
@@ -44799,7 +44710,7 @@ const defaultWords = [
   {
     "word": "overhaul",
     "meanings": [
-      "점검하다",
+      "조사하다",
       "정밀 검사",
       "개혁"
     ]
@@ -45149,7 +45060,6 @@ const defaultWords = [
     "word": "palpable",
     "meanings": [
       "만질 수 있는",
-      "뚜렷한",
       "명백한"
     ]
   },
@@ -45657,7 +45567,6 @@ const defaultWords = [
   {
     "word": "passive",
     "meanings": [
-      "수동적인",
       "소극적인"
     ]
   },
@@ -45938,9 +45847,8 @@ const defaultWords = [
   {
     "word": "peculiar",
     "meanings": [
-      "특이한",
-      "기묘한",
-      "독특한"
+      "독특한",
+      "기묘한"
     ]
   },
   {
@@ -46271,7 +46179,7 @@ const defaultWords = [
     "meanings": [
       "다년생의",
       "지속적인",
-      "영원한"
+      "영구적인"
     ]
   },
   {
@@ -46493,7 +46401,7 @@ const defaultWords = [
     "word": "perpetual",
     "meanings": [
       "영구적인",
-      "끊임없는"
+      "지속적인"
     ]
   },
   {
@@ -46625,7 +46533,7 @@ const defaultWords = [
   {
     "word": "perspicuous",
     "meanings": [
-      "명확한",
+      "명백한",
       "명료한"
     ]
   },
@@ -46661,8 +46569,7 @@ const defaultWords = [
     "word": "pertinent",
     "meanings": [
       "적절한",
-      "관련 있는",
-      "타당한"
+      "관련 있는"
     ]
   },
   {
@@ -46777,8 +46684,7 @@ const defaultWords = [
     "word": "petty",
     "meanings": [
       "사소한",
-      "옹졸한",
-      "하찮은"
+      "옹졸한"
     ]
   },
   {
@@ -47519,8 +47425,7 @@ const defaultWords = [
   {
     "word": "pleasant",
     "meanings": [
-      "즐거운",
-      "유쾌한"
+      "기쁜"
     ]
   },
   {
@@ -48414,7 +48319,7 @@ const defaultWords = [
   {
     "word": "precarious",
     "meanings": [
-      "위태로운",
+      "위험한",
       "불확실한",
       "다루기 힘든"
     ]
@@ -48513,7 +48418,6 @@ const defaultWords = [
     "word": "precise",
     "meanings": [
       "정확한",
-      "정밀한",
       "엄밀한"
     ]
   },
@@ -48890,7 +48794,7 @@ const defaultWords = [
   {
     "word": "preserve",
     "meanings": [
-      "보존하다",
+      "유지하다",
       "보호하다"
     ]
   },
@@ -48976,9 +48880,8 @@ const defaultWords = [
   {
     "word": "preternatural",
     "meanings": [
-      "기이한",
-      "초자연적인",
-      "불가사의한"
+      "신비한",
+      "초자연적인"
     ]
   },
   {
@@ -49400,7 +49303,7 @@ const defaultWords = [
   {
     "word": "prodigious",
     "meanings": [
-      "엄청난",
+      "거대한",
       "굉장한",
       "경이로운"
     ]
@@ -49633,7 +49536,7 @@ const defaultWords = [
   {
     "word": "proliferate",
     "meanings": [
-      "급증하다",
+      "증가하다",
       "확산되다",
       "번식하다"
     ]
@@ -49643,7 +49546,7 @@ const defaultWords = [
     "meanings": [
       "다산의",
       "다작의",
-      "풍부한"
+      "충분한"
     ]
   },
   {
@@ -49666,7 +49569,7 @@ const defaultWords = [
     "word": "prolong",
     "meanings": [
       "연장하다",
-      "늘리다",
+      "증가하다",
       "오래 끌다"
     ]
   },
@@ -49679,7 +49582,7 @@ const defaultWords = [
   {
     "word": "prominent",
     "meanings": [
-      "저명한",
+      "유명한",
       "두드러진",
       "돌출된"
     ]
@@ -50019,7 +49922,7 @@ const defaultWords = [
     "word": "protect",
     "meanings": [
       "보호하다",
-      "지키다"
+      "유지하다"
     ]
   },
   {
@@ -50158,8 +50061,6 @@ const defaultWords = [
   {
     "word": "provisional",
     "meanings": [
-      "임시의",
-      "잠정적인",
       "일시적인"
     ]
   },
@@ -50228,7 +50129,7 @@ const defaultWords = [
     "word": "prudent",
     "meanings": [
       "현명한",
-      "빈틈없는",
+      "정확한",
       "조심성 있는"
     ]
   },
@@ -50809,7 +50710,7 @@ const defaultWords = [
     "meanings": [
       "메스꺼운",
       "멀미나는",
-      "불안한"
+      "위험한"
     ]
   },
   {
@@ -51443,7 +51344,7 @@ const defaultWords = [
     "word": "reasonable",
     "meanings": [
       "합리적인",
-      "타당한",
+      "적절한",
       "적당한"
     ]
   },
@@ -51531,7 +51432,7 @@ const defaultWords = [
     "word": "recede",
     "meanings": [
       "물러나다",
-      "약해지다",
+      "약화시키다",
       "희미해지다"
     ]
   },
@@ -51709,7 +51610,7 @@ const defaultWords = [
   {
     "word": "recondite",
     "meanings": [
-      "난해한",
+      "복잡한",
       "심오한",
       "거의 알려지지 않은"
     ]
@@ -51868,7 +51769,7 @@ const defaultWords = [
   {
     "word": "reduce",
     "meanings": [
-      "줄이다",
+      "감소하다",
       "감소시키다"
     ]
   },
@@ -52139,8 +52040,7 @@ const defaultWords = [
   {
     "word": "reinforce",
     "meanings": [
-      "강화하다",
-      "보강하다"
+      "강화하다"
     ]
   },
   {
@@ -52532,7 +52432,6 @@ const defaultWords = [
     "word": "renounce",
     "meanings": [
       "포기하다",
-      "단념하다",
       "거부하다"
     ]
   },
@@ -52844,7 +52743,7 @@ const defaultWords = [
     "word": "requisite",
     "meanings": [
       "필요한",
-      "필수 불가결한",
+      "필수적인",
       "필수품"
     ]
   },
@@ -53144,7 +53043,7 @@ const defaultWords = [
   {
     "word": "restless",
     "meanings": [
-      "불안한",
+      "위험한",
       "안절부절못하는"
     ]
   },
@@ -53165,8 +53064,7 @@ const defaultWords = [
   {
     "word": "restore",
     "meanings": [
-      "복구하다",
-      "회복하다"
+      "복구하다"
     ]
   },
   {
@@ -53398,7 +53296,7 @@ const defaultWords = [
   {
     "word": "reveal",
     "meanings": [
-      "밝히다",
+      "설명하다",
       "드러내다",
       "폭로하다"
     ]
@@ -53479,7 +53377,7 @@ const defaultWords = [
   {
     "word": "review",
     "meanings": [
-      "검토하다",
+      "조사하다",
       "복습하다",
       "논평"
     ]
@@ -53620,7 +53518,7 @@ const defaultWords = [
     "word": "rich",
     "meanings": [
       "부유한",
-      "풍부한"
+      "충분한"
     ]
   },
   {
@@ -54097,7 +53995,7 @@ const defaultWords = [
     "meanings": [
       "축 처지다",
       "쇠퇴하다",
-      "줄어들다"
+      "감소하다"
     ]
   },
   {
@@ -54389,7 +54287,6 @@ const defaultWords = [
     "word": "scant",
     "meanings": [
       "부족한",
-      "불충분한",
       "빈약한",
       "빠듯한"
     ]
@@ -54778,7 +54675,7 @@ const defaultWords = [
     "word": "seething",
     "meanings": [
       "부글부글 끓는",
-      "격분한"
+      "화난"
     ]
   },
   {
@@ -55082,7 +54979,7 @@ const defaultWords = [
   {
     "word": "shrink",
     "meanings": [
-      "줄어들다",
+      "감소하다",
       "오그라들다"
     ]
   },
@@ -55150,9 +55047,7 @@ const defaultWords = [
   {
     "word": "similar",
     "meanings": [
-      "비슷한",
-      "유사한",
-      "닮은"
+      "유사한"
     ]
   },
   {
@@ -55382,7 +55277,7 @@ const defaultWords = [
     "word": "soar",
     "meanings": [
       "치솟다",
-      "급증하다"
+      "증가하다"
     ]
   },
   {
@@ -55457,7 +55352,7 @@ const defaultWords = [
   {
     "word": "solemn",
     "meanings": [
-      "엄숙한",
+      "엄격한",
       "근엄한"
     ]
   },
@@ -55473,7 +55368,7 @@ const defaultWords = [
     "meanings": [
       "단단한",
       "견고한",
-      "확실한"
+      "명백한"
     ]
   },
   {
@@ -55508,7 +55403,6 @@ const defaultWords = [
   {
     "word": "solve",
     "meanings": [
-      "풀다",
       "해결하다",
       "해소하다"
     ]
@@ -55529,7 +55423,7 @@ const defaultWords = [
     "word": "somber",
     "meanings": [
       "어두운",
-      "침울한"
+      "우울한"
     ]
   },
   {
@@ -55788,7 +55682,7 @@ const defaultWords = [
   {
     "word": "spoil",
     "meanings": [
-      "망치다",
+      "파괴하다",
       "상하다"
     ]
   },
@@ -55865,7 +55759,7 @@ const defaultWords = [
     "word": "spurious",
     "meanings": [
       "거짓된",
-      "가짜의"
+      "거짓의"
     ]
   },
   {
@@ -56079,7 +55973,7 @@ const defaultWords = [
     "meanings": [
       "완전한",
       "삭막한",
-      "뚜렷한"
+      "명백한"
     ]
   },
   {
@@ -56419,7 +56313,7 @@ const defaultWords = [
     "word": "straightforward",
     "meanings": [
       "솔직한",
-      "간단한",
+      "단순한",
       "직접적인"
     ]
   },
@@ -56874,7 +56768,7 @@ const defaultWords = [
   {
     "word": "successive",
     "meanings": [
-      "연속적인",
+      "지속적인",
       "상속의"
     ]
   },
@@ -56977,8 +56871,7 @@ const defaultWords = [
   {
     "word": "suitable",
     "meanings": [
-      "적합한",
-      "알맞은",
+      "적절한",
       "어울리는"
     ]
   },
@@ -57162,7 +57055,7 @@ const defaultWords = [
   {
     "word": "surge",
     "meanings": [
-      "급증하다",
+      "증가하다",
       "밀려들다"
     ]
   },
@@ -57796,8 +57689,7 @@ const defaultWords = [
   {
     "word": "temporary",
     "meanings": [
-      "일시적인",
-      "임시의"
+      "일시적인"
     ]
   },
   {
@@ -57867,7 +57759,7 @@ const defaultWords = [
   {
     "word": "tentative",
     "meanings": [
-      "잠정적인",
+      "일시적인",
       "머뭇거리는",
       "자신 없는"
     ]
@@ -58165,7 +58057,7 @@ const defaultWords = [
     "word": "thorough",
     "meanings": [
       "철저한",
-      "빈틈없는"
+      "정확한"
     ]
   },
   {
@@ -58405,7 +58297,6 @@ const defaultWords = [
     "word": "titanic",
     "meanings": [
       "거대한",
-      "엄청난",
       "기운찬"
     ]
   },
@@ -58699,8 +58590,7 @@ const defaultWords = [
   {
     "word": "traditional",
     "meanings": [
-      "전통적인",
-      "관습적인"
+      "전통적인"
     ]
   },
   {
@@ -59096,7 +58986,7 @@ const defaultWords = [
   {
     "word": "tremendous",
     "meanings": [
-      "엄청난",
+      "거대한",
       "굉장한"
     ]
   },
@@ -59228,7 +59118,7 @@ const defaultWords = [
     "word": "trim",
     "meanings": [
       "다듬다",
-      "줄이다",
+      "감소하다",
       "깔끔한"
     ]
   },
@@ -59259,7 +59149,6 @@ const defaultWords = [
     "word": "trivial",
     "meanings": [
       "사소한",
-      "하찮은",
       "평범한"
     ]
   },
@@ -59764,7 +59653,7 @@ const defaultWords = [
   {
     "word": "unambiguous",
     "meanings": [
-      "명확한",
+      "명백한",
       "모호하지 않은"
     ]
   },
@@ -60042,7 +59931,7 @@ const defaultWords = [
     "word": "undo",
     "meanings": [
       "원상태로 돌리다",
-      "풀다"
+      "해결하다"
     ]
   },
   {
@@ -60057,7 +59946,7 @@ const defaultWords = [
     "meanings": [
       "지나친",
       "과도한",
-      "부당한"
+      "부적절한"
     ]
   },
   {
@@ -60078,7 +59967,7 @@ const defaultWords = [
   {
     "word": "unearthly",
     "meanings": [
-      "기이한",
+      "신비한",
       "섬뜩한",
       "이 세상 것이 아닌"
     ]
@@ -60086,7 +59975,7 @@ const defaultWords = [
   {
     "word": "uneasy",
     "meanings": [
-      "불안한",
+      "위험한",
       "불편한"
     ]
   },
@@ -60108,7 +59997,6 @@ const defaultWords = [
     "word": "unequivocal",
     "meanings": [
       "명백한",
-      "분명한",
       "모호하지 않은"
     ]
   },
@@ -60124,7 +60012,7 @@ const defaultWords = [
     "word": "unfair",
     "meanings": [
       "불공평한",
-      "부당한"
+      "부적절한"
     ]
   },
   {
@@ -60269,7 +60157,7 @@ const defaultWords = [
   {
     "word": "universal",
     "meanings": [
-      "보편적인",
+      "일반적인",
       "전 세계적인"
     ]
   },
@@ -60368,7 +60256,7 @@ const defaultWords = [
   {
     "word": "unremitting",
     "meanings": [
-      "끊임없는",
+      "지속적인",
       "끈질긴"
     ]
   },
@@ -60385,7 +60273,7 @@ const defaultWords = [
     "meanings": [
       "상처 입지 않은",
       "다치지 않은",
-      "무사한"
+      "안전한"
     ]
   },
   {
@@ -60444,7 +60332,7 @@ const defaultWords = [
   {
     "word": "unusual",
     "meanings": [
-      "특이한",
+      "독특한",
       "흔치 않은"
     ]
   },
@@ -60594,7 +60482,7 @@ const defaultWords = [
     "word": "upsurge",
     "meanings": [
       "급증",
-      "급증하다",
+      "증가하다",
       "쇄도"
     ]
   },
@@ -60868,7 +60756,7 @@ const defaultWords = [
     "word": "valid",
     "meanings": [
       "유효한",
-      "타당한",
+      "적절한",
       "정당한"
     ]
   },
@@ -61257,7 +61145,7 @@ const defaultWords = [
   {
     "word": "veracious",
     "meanings": [
-      "정직한",
+      "솔직한",
       "진실한",
       "정확한"
     ]
@@ -61788,7 +61676,7 @@ const defaultWords = [
     "meanings": [
       "위반하다",
       "침해하다",
-      "훼손하다"
+      "파괴하다"
     ]
   },
   {
@@ -62143,7 +62031,7 @@ const defaultWords = [
     "word": "voluminous",
     "meanings": [
       "부피가 큰",
-      "방대한"
+      "거대한"
     ]
   },
   {
@@ -62324,7 +62212,7 @@ const defaultWords = [
   {
     "word": "wane",
     "meanings": [
-      "줄어들다",
+      "감소하다",
       "시들해지다"
     ]
   },
@@ -62546,7 +62434,7 @@ const defaultWords = [
     "word": "weird",
     "meanings": [
       "기묘한",
-      "기이한"
+      "신비한"
     ]
   },
   {
@@ -65026,7 +64914,7 @@ const defaultWords = [
   {
     "word": "test",
     "meanings": [
-      "검사하다",
+      "조사하다",
       "테스트",
       "실험",
       "시험물"
@@ -65539,7 +65427,7 @@ const defaultWords = [
     "word": "involved",
     "meanings": [
       "말려든",
-      "뒤얽힌",
+      "복잡한",
       "깊이 관련된"
     ]
   },
@@ -66431,8 +66319,7 @@ const defaultWords = [
   {
     "word": "wide",
     "meanings": [
-      "넓은",
-      "광범위한"
+      "넓은"
     ]
   },
   {
@@ -67585,7 +67472,7 @@ const defaultWords = [
     "word": "score",
     "meanings": [
       "거두다",
-      "얻다",
+      "획득하다",
       "말로 해내다",
       "가슴속에 새기다"
     ]
@@ -71764,7 +71651,7 @@ const defaultWords = [
     "word": "confused",
     "meanings": [
       "헷갈리다",
-      "당황한",
+      "어리둥절한",
       "헛갈리다",
       "곤혹스럽다"
     ]
@@ -71805,7 +71692,7 @@ const defaultWords = [
     "meanings": [
       "풀기어려운",
       "다변화",
-      "뒤얽힌"
+      "복잡한"
     ]
   },
   {
@@ -73411,7 +73298,7 @@ const defaultWords = [
     "word": "scary",
     "meanings": [
       "으슥하다",
-      "무서운"
+      "두려운"
     ]
   },
   {
@@ -73939,7 +73826,7 @@ const defaultWords = [
     "word": "difficulty",
     "meanings": [
       "난국",
-      "지장",
+      "방해물",
       "궁박",
       "어려움"
     ]
@@ -74276,7 +74163,7 @@ const defaultWords = [
     "word": "ruin",
     "meanings": [
       "파산시키다",
-      "망치다",
+      "파괴하다",
       "화근",
       "거꾸로 떨어지다"
     ]
@@ -74782,7 +74669,7 @@ const defaultWords = [
     "word": "larry",
     "meanings": [
       "이류의",
-      "가짜의",
+      "거짓의",
       "엉터리상품",
       "바닥이 개폐되는 광차"
     ]
@@ -76932,7 +76819,7 @@ const defaultWords = [
       "순환의",
       "끝없는",
       "무한한",
-      "영원한"
+      "영구적인"
     ]
   },
   {
@@ -81567,7 +81454,7 @@ const defaultWords = [
     "meanings": [
       "밀짚",
       "스트로",
-      "가짜의",
+      "거짓의",
       "밀짚모자"
     ]
   },
@@ -84383,7 +84270,7 @@ const defaultWords = [
     "word": "bastard",
     "meanings": [
       "서자",
-      "가짜의",
+      "거짓의",
       "가짜-서출의"
     ]
   },
@@ -88819,7 +88706,7 @@ const defaultWords = [
   {
     "word": "amusing",
     "meanings": [
-      "즐거운",
+      "기쁜",
       "우습다",
       "우스운",
       "재미나는"
@@ -92510,7 +92397,7 @@ const defaultWords = [
     "word": "dreadful",
     "meanings": [
       "무섭다",
-      "무서운"
+      "두려운"
     ]
   },
   {
@@ -93161,7 +93048,7 @@ const defaultWords = [
     "meanings": [
       "모델인형",
       "모형",
-      "가짜의",
+      "거짓의",
       "가제본"
     ]
   },
@@ -94371,7 +94258,7 @@ const defaultWords = [
     "word": "pseudo",
     "meanings": [
       "꾸며 보이는 사람",
-      "가짜의",
+      "거짓의",
       "사이비"
     ]
   },
@@ -95783,7 +95670,7 @@ const defaultWords = [
     "meanings": [
       "무섭다",
       "걱정하여",
-      "무서운"
+      "두려운"
     ]
   },
   {
@@ -97370,9 +97257,7 @@ const defaultWords = [
     "word": "obstruction",
     "meanings": [
       "방해",
-      "장애물",
-      "지장",
-      "방해물"
+      "장애물"
     ]
   },
   {
@@ -103475,7 +103360,7 @@ const defaultWords = [
       "와락잡아당기다",
       "일치하다",
       "걸다",
-      "지장"
+      "방해물"
     ]
   },
   {
@@ -103957,7 +103842,7 @@ const defaultWords = [
     "word": "truthful",
     "meanings": [
       "진실하다",
-      "정직한",
+      "솔직한",
       "진실의"
     ]
   },
@@ -107201,7 +107086,6 @@ const defaultWords = [
   {
     "word": "unravel",
     "meanings": [
-      "풀다",
       "해결하다"
     ]
   },
@@ -107402,7 +107286,7 @@ const defaultWords = [
     "word": "ascend",
     "meanings": [
       "올라가다",
-      "상승하다"
+      "증가하다"
     ]
   },
   {
