@@ -239,7 +239,7 @@ const defaultWords = [
     "word": "abolish",
     "meanings": [
       "폐지하다",
-      "없애다",
+      "제거하다",
       "철폐하다"
     ]
   },
@@ -1770,7 +1770,7 @@ const defaultWords = [
   {
     "word": "agile",
     "meanings": [
-      "민첩한",
+      "신속한",
       "날렵한"
     ]
   },
@@ -3413,7 +3413,6 @@ const defaultWords = [
     "word": "aperture",
     "meanings": [
       "구멍",
-      "틈",
       "조리개"
     ]
   },
@@ -4298,7 +4297,7 @@ const defaultWords = [
       "분명히 표현하다",
       "또렷한",
       "말을 잘하는",
-      "또렷이 말하다"
+      "분명히 발음하다"
     ]
   },
   {
@@ -5239,8 +5238,7 @@ const defaultWords = [
   {
     "word": "average",
     "meanings": [
-      "평균",
-      "평균의"
+      "평균"
     ]
   },
   {
@@ -6743,8 +6741,7 @@ const defaultWords = [
   {
     "word": "bilious",
     "meanings": [
-      "화를 잘 내는",
-      "성마른",
+      "화 잘 내는",
       "담즙의",
       "구역질 나는"
     ]
@@ -7853,7 +7850,7 @@ const defaultWords = [
     "word": "brisk",
     "meanings": [
       "활기찬",
-      "빠른"
+      "신속한"
     ]
   },
   {
@@ -8770,7 +8767,6 @@ const defaultWords = [
     "meanings": [
       "유세하다",
       "여론조사하다",
-      "여론 조사를 하다",
       "자세히 조사하다"
     ]
   },
@@ -9735,7 +9731,7 @@ const defaultWords = [
     "word": "chasm",
     "meanings": [
       "깊은 틈",
-      "균열",
+      "구멍",
       "차이",
       "아주 깊은 틈"
     ]
@@ -9783,8 +9779,7 @@ const defaultWords = [
   {
     "word": "chat",
     "meanings": [
-      "수다",
-      "잡담하다"
+      "수다"
     ]
   },
   {
@@ -9962,8 +9957,6 @@ const defaultWords = [
   {
     "word": "choleric",
     "meanings": [
-      "화를 잘 내는",
-      "성마른",
       "화 잘 내는",
       "다혈질의"
     ]
@@ -10383,7 +10376,7 @@ const defaultWords = [
     "word": "clear",
     "meanings": [
       "명백한",
-      "치우다"
+      "제거하다"
     ]
   },
   {
@@ -10877,8 +10870,7 @@ const defaultWords = [
     "meanings": [
       "밀착하다",
       "일관성이 있다",
-      "논리 정연하다",
-      "일관성 있다"
+      "논리 정연하다"
     ]
   },
   {
@@ -11610,8 +11602,7 @@ const defaultWords = [
     "meanings": [
       "남의 뜻에 잘 따르는",
       "고분고분한",
-      "정중한",
-      "남의 뜻을 잘 따르는"
+      "정중한"
     ]
   },
   {
@@ -12197,7 +12188,7 @@ const defaultWords = [
     "word": "confabulate",
     "meanings": [
       "담소하다",
-      "잡담하다"
+      "수다 떨다"
     ]
   },
   {
@@ -12682,7 +12673,7 @@ const defaultWords = [
     "meanings": [
       "중요한",
       "결과로서 일어나는",
-      "피할 수 없는"
+      "불가피한"
     ]
   },
   {
@@ -14168,8 +14159,7 @@ const defaultWords = [
     "meanings": [
       "위협하다",
       "겁을 주다",
-      "암소",
-      "겁주다"
+      "암소"
     ]
   },
   {
@@ -14199,8 +14189,7 @@ const defaultWords = [
     "meanings": [
       "수줍어하는",
       "내숭을 떠는",
-      "가식적인",
-      "내숭 떠는"
+      "가식적인"
     ]
   },
   {
@@ -14505,7 +14494,7 @@ const defaultWords = [
     "word": "crevice",
     "meanings": [
       "갈라진 틈",
-      "균열",
+      "구멍",
       "갈라진 곳"
     ]
   },
@@ -14692,9 +14681,8 @@ const defaultWords = [
   {
     "word": "crotchety",
     "meanings": [
-      "화를 잘 내는",
+      "화 잘 내는",
       "신경질적인",
-      "화잘내는",
       "괴팍한"
     ]
   },
@@ -15603,8 +15591,7 @@ const defaultWords = [
     "word": "deaf",
     "meanings": [
       "귀가 먹은",
-      "청각 장애가 있는",
-      "귀먹은"
+      "청각 장애가 있는"
     ]
   },
   {
@@ -16385,7 +16372,7 @@ const defaultWords = [
       "능숙한",
       "솜씨 좋은",
       "재빠른",
-      "날랜"
+      "신속한"
     ]
   },
   {
@@ -17626,7 +17613,6 @@ const defaultWords = [
     "word": "detour",
     "meanings": [
       "우회",
-      "우회로",
       "우회하다"
     ]
   },
@@ -17823,7 +17809,7 @@ const defaultWords = [
       "솜씨 좋은",
       "능숙한",
       "손재주가 있는",
-      "민첩한"
+      "신속한"
     ]
   },
   {
@@ -17858,8 +17844,7 @@ const defaultWords = [
   {
     "word": "diagnostic",
     "meanings": [
-      "진단의",
-      "진단"
+      "진단의"
     ]
   },
   {
@@ -19164,7 +19149,7 @@ const defaultWords = [
     "word": "dispel",
     "meanings": [
       "떨쳐버리다",
-      "없애다",
+      "제거하다",
       "흩어지게 하다"
     ]
   },
@@ -20286,8 +20271,7 @@ const defaultWords = [
     "meanings": [
       "쓸데없는 말",
       "군침",
-      "허튼소리하다",
-      "허튼소리를 하다"
+      "허튼소리하다"
     ]
   },
   {
@@ -21260,7 +21244,6 @@ const defaultWords = [
   {
     "word": "eliminate",
     "meanings": [
-      "없애다",
       "제거하다"
     ]
   },
@@ -22281,7 +22264,6 @@ const defaultWords = [
     "meanings": [
       "안락하게 자리 잡다",
       "안치하다",
-      "안락하게 자리를 잡다",
       "숨기다"
     ]
   },
@@ -22504,10 +22486,9 @@ const defaultWords = [
   {
     "word": "enunciate",
     "meanings": [
-      "또렷이 발음하다",
+      "분명히 발음하다",
       "설명하다",
-      "선언하다",
-      "분명히 발음하다"
+      "선언하다"
     ]
   },
   {
@@ -22878,7 +22859,6 @@ const defaultWords = [
     "word": "eradicate",
     "meanings": [
       "근절하다",
-      "뿌리뽑다",
       "퇴치하다"
     ]
   },
@@ -22886,7 +22866,7 @@ const defaultWords = [
     "word": "erase",
     "meanings": [
       "지우다",
-      "없애다"
+      "제거하다"
     ]
   },
   {
@@ -24373,8 +24353,7 @@ const defaultWords = [
     "meanings": [
       "경감하다",
       "정상을 참작하다",
-      "가볍게 하다",
-      "정상 참작하다"
+      "가볍게 하다"
     ]
   },
   {
@@ -24433,10 +24412,7 @@ const defaultWords = [
   {
     "word": "extirpate",
     "meanings": [
-      "근절하다",
-      "멸절시키다",
-      "박멸하다",
-      "뿌리 뽑다"
+      "근절하다"
     ]
   },
   {
@@ -24727,7 +24703,7 @@ const defaultWords = [
     "word": "factious",
     "meanings": [
       "당파적인",
-      "반역적인"
+      "반항적인"
     ]
   },
   {
@@ -25070,7 +25046,7 @@ const defaultWords = [
   {
     "word": "fast",
     "meanings": [
-      "빠른",
+      "신속한",
       "단식하다"
     ]
   },
@@ -25976,7 +25952,7 @@ const defaultWords = [
     "word": "fissure",
     "meanings": [
       "갈라진 틈",
-      "균열"
+      "구멍"
     ]
   },
   {
@@ -26245,7 +26221,7 @@ const defaultWords = [
     "word": "fleet",
     "meanings": [
       "함대",
-      "빠른",
+      "신속한",
       "순식간의"
     ]
   },
@@ -27232,7 +27208,7 @@ const defaultWords = [
   {
     "word": "fractious",
     "meanings": [
-      "성마른",
+      "화 잘 내는",
       "괴팍한",
       "다루기 힘든",
       "성를 잘 내는"
@@ -27242,7 +27218,7 @@ const defaultWords = [
     "word": "fracture",
     "meanings": [
       "골절",
-      "균열"
+      "구멍"
     ]
   },
   {
@@ -27370,8 +27346,7 @@ const defaultWords = [
     "meanings": [
       "으로 가득 찬",
       "걱정스러운",
-      "위험한",
-      "가득 찬"
+      "위험한"
     ]
   },
   {
@@ -28014,7 +27989,6 @@ const defaultWords = [
   {
     "word": "gab",
     "meanings": [
-      "수다를 떨다",
       "수다 떨다"
     ]
   },
@@ -28173,8 +28147,7 @@ const defaultWords = [
     "word": "gamble",
     "meanings": [
       "도박하다",
-      "모험",
-      "도박을 하다"
+      "모험"
     ]
   },
   {
@@ -28219,7 +28192,7 @@ const defaultWords = [
   {
     "word": "gap",
     "meanings": [
-      "틈",
+      "구멍",
       "격차"
     ]
   },
@@ -28325,8 +28298,7 @@ const defaultWords = [
     "meanings": [
       "수다스러운",
       "말 많은",
-      "장황한",
-      "말이 많은"
+      "장황한"
     ]
   },
   {
@@ -28719,8 +28691,7 @@ const defaultWords = [
     "meanings": [
       "싹트다",
       "시작되다",
-      "성장하다",
-      "싹이 트다"
+      "성장하다"
     ]
   },
   {
@@ -28917,7 +28888,7 @@ const defaultWords = [
     "meanings": [
       "허리둘레",
       "둘레의 길이",
-      "둘레",
+      "가장자리",
       "허리띠"
     ]
   },
@@ -29689,8 +29660,7 @@ const defaultWords = [
     "word": "gratis",
     "meanings": [
       "무료의",
-      "공짜로",
-      "무료로"
+      "공짜로"
     ]
   },
   {
@@ -30767,8 +30737,7 @@ const defaultWords = [
     "meanings": [
       "흐릿한",
       "안개가 낀",
-      "모호한",
-      "안개 낀"
+      "모호한"
     ]
   },
   {
@@ -31244,7 +31213,7 @@ const defaultWords = [
     "word": "hiatus",
     "meanings": [
       "중단",
-      "틈",
+      "구멍",
       "공백"
     ]
   },
@@ -31982,8 +31951,7 @@ const defaultWords = [
     "meanings": [
       "잡종의",
       "혼합의",
-      "혼성물",
-      "잡종"
+      "혼성물"
     ]
   },
   {
@@ -33978,7 +33946,6 @@ const defaultWords = [
     "word": "individual",
     "meanings": [
       "개인",
-      "개인의",
       "개별적인"
     ]
   },
@@ -34212,7 +34179,7 @@ const defaultWords = [
   {
     "word": "inevitable",
     "meanings": [
-      "피할 수 없는",
+      "불가피한",
       "당연한"
     ]
   },
@@ -34330,8 +34297,7 @@ const defaultWords = [
     "word": "infidel",
     "meanings": [
       "신앙심이 없는 사람",
-      "이교도",
-      "신앙심 없는 사람"
+      "이교도"
     ]
   },
   {
@@ -35455,8 +35421,7 @@ const defaultWords = [
   {
     "word": "interior",
     "meanings": [
-      "내부",
-      "내부의"
+      "내부"
     ]
   },
   {
@@ -36025,8 +35990,7 @@ const defaultWords = [
     "meanings": [
       "화가 잘 나는",
       "성미가 급한",
-      "화를 잘 내는",
-      "성마른"
+      "화 잘 내는"
     ]
   },
   {
@@ -36161,8 +36125,7 @@ const defaultWords = [
     "meanings": [
       "결단력 없는",
       "우유부단한",
-      "망설이는",
-      "결단력이 없는"
+      "망설이는"
     ]
   },
   {
@@ -36637,8 +36600,7 @@ const defaultWords = [
     "word": "judicious",
     "meanings": [
       "현명한",
-      "판단력이 있는",
-      "판단력 있는"
+      "판단력이 있는"
     ]
   },
   {
@@ -38450,8 +38412,7 @@ const defaultWords = [
   {
     "word": "liquid",
     "meanings": [
-      "액체",
-      "액체의"
+      "액체"
     ]
   },
   {
@@ -38755,8 +38716,7 @@ const defaultWords = [
   {
     "word": "look",
     "meanings": [
-      "보다",
-      "보이다"
+      "보다"
     ]
   },
   {
@@ -42236,8 +42196,7 @@ const defaultWords = [
     "meanings": [
       "소리를 죽인",
       "조용한",
-      "약해진",
-      "소리 죽인"
+      "약해진"
     ]
   },
   {
@@ -42560,7 +42519,7 @@ const defaultWords = [
     "word": "necessary",
     "meanings": [
       "필수적인",
-      "피할 수 없는"
+      "불가피한"
     ]
   },
   {
@@ -43142,8 +43101,7 @@ const defaultWords = [
   {
     "word": "north",
     "meanings": [
-      "북쪽",
-      "북쪽의"
+      "북쪽"
     ]
   },
   {
@@ -44324,8 +44282,7 @@ const defaultWords = [
   {
     "word": "orifice",
     "meanings": [
-      "구멍",
-      "틈"
+      "구멍"
     ]
   },
   {
@@ -44754,8 +44711,7 @@ const defaultWords = [
   {
     "word": "overseas",
     "meanings": [
-      "해외의",
-      "해외로"
+      "해외의"
     ]
   },
   {
@@ -45587,7 +45543,6 @@ const defaultWords = [
     "word": "past",
     "meanings": [
       "과거의",
-      "과거",
       "지나서"
     ]
   },
@@ -46264,7 +46219,7 @@ const defaultWords = [
     "meanings": [
       "주변",
       "경계",
-      "둘레"
+      "가장자리"
     ]
   },
   {
@@ -47079,8 +47034,7 @@ const defaultWords = [
   {
     "word": "pink",
     "meanings": [
-      "분홍색",
-      "분홍색의"
+      "분홍색"
     ]
   },
   {
@@ -50234,8 +50188,7 @@ const defaultWords = [
     "word": "public",
     "meanings": [
       "대중의",
-      "공공의",
-      "대중"
+      "공공의"
     ]
   },
   {
@@ -50786,7 +50739,6 @@ const defaultWords = [
   {
     "word": "quick",
     "meanings": [
-      "빠른",
       "신속한"
     ]
   },
@@ -51106,7 +51058,6 @@ const defaultWords = [
   {
     "word": "rapid",
     "meanings": [
-      "빠른",
       "신속한"
     ]
   },
@@ -52342,7 +52293,6 @@ const defaultWords = [
     "word": "remove",
     "meanings": [
       "제거하다",
-      "치우다",
       "옮기다"
     ]
   },
@@ -53590,8 +53540,7 @@ const defaultWords = [
   {
     "word": "rift",
     "meanings": [
-      "균열",
-      "틈",
+      "구멍",
       "불화"
     ]
   },
@@ -53903,7 +53852,7 @@ const defaultWords = [
     "word": "rupture",
     "meanings": [
       "파열",
-      "균열"
+      "구멍"
     ]
   },
   {
@@ -54109,8 +54058,7 @@ const defaultWords = [
     "meanings": [
       "낙관적인",
       "자신감이 넘치는",
-      "혈색이 좋은",
-      "자신감 넘치는"
+      "혈색이 좋은"
     ]
   },
   {
@@ -57286,8 +57234,7 @@ const defaultWords = [
   {
     "word": "swift",
     "meanings": [
-      "신속한",
-      "빠른"
+      "신속한"
     ]
   },
   {
@@ -57911,7 +57858,7 @@ const defaultWords = [
     "word": "testy",
     "meanings": [
       "짜증을 잘 내는",
-      "화를 잘 내는"
+      "화 잘 내는"
     ]
   },
   {
@@ -58494,7 +58441,7 @@ const defaultWords = [
   {
     "word": "touchy",
     "meanings": [
-      "화를 잘 내는",
+      "화 잘 내는",
       "민감한",
       "까다로운"
     ]
@@ -60443,7 +60390,6 @@ const defaultWords = [
   {
     "word": "uproot",
     "meanings": [
-      "뿌리 뽑다",
       "근절하다",
       "몰아내다"
     ]
@@ -60466,8 +60412,7 @@ const defaultWords = [
   {
     "word": "upstairs",
     "meanings": [
-      "위층으로",
-      "위층"
+      "위층으로"
     ]
   },
   {
@@ -61751,8 +61696,7 @@ const defaultWords = [
     "word": "virtuoso",
     "meanings": [
       "거장",
-      "명인",
-      "거장의"
+      "명인"
     ]
   },
   {
@@ -62607,7 +62551,6 @@ const defaultWords = [
     "word": "wholesale",
     "meanings": [
       "도매",
-      "도매의",
       "대규모의"
     ]
   },
@@ -63533,8 +63476,7 @@ const defaultWords = [
     "meanings": [
       "종속하여",
       "미만",
-      "의 아래에",
-      "아래에"
+      "의 아래에"
     ]
   },
   {
@@ -64185,8 +64127,7 @@ const defaultWords = [
     "word": "early",
     "meanings": [
       "어릴때의",
-      "일찍",
-      "일찍이"
+      "일찍"
     ]
   },
   {
@@ -64969,8 +64910,7 @@ const defaultWords = [
   {
     "word": "online",
     "meanings": [
-      "온라인의",
-      "온라인"
+      "온라인의"
     ]
   },
   {
@@ -65911,8 +65851,7 @@ const defaultWords = [
     "meanings": [
       "최근",
       "근래에",
-      "요사이",
-      "최근에"
+      "요사이"
     ]
   },
   {
@@ -66354,8 +66293,7 @@ const defaultWords = [
   {
     "word": "friday",
     "meanings": [
-      "금요일",
-      "금요일에"
+      "금요일"
     ]
   },
   {
@@ -66557,8 +66495,7 @@ const defaultWords = [
   {
     "word": "sports",
     "meanings": [
-      "스포츠",
-      "스포츠의"
+      "스포츠"
     ]
   },
   {
@@ -67069,8 +67006,7 @@ const defaultWords = [
     "meanings": [
       "기독교도",
       "기독교도 다운",
-      "사람다운",
-      "기독교도의"
+      "사람다운"
     ]
   },
   {
@@ -67314,7 +67250,7 @@ const defaultWords = [
       "더딘",
       "지둔",
       "늦은",
-      "느릿느릿"
+      "서서히"
     ]
   },
   {
@@ -67430,8 +67366,7 @@ const defaultWords = [
     "meanings": [
       "남쪽으로의",
       "남쪽에 있는",
-      "남주 제주의",
-      "남쪽의"
+      "남주 제주의"
     ]
   },
   {
@@ -68693,8 +68628,7 @@ const defaultWords = [
     "meanings": [
       "음주",
       "마시기의",
-      "음용의",
-      "음주의"
+      "음용의"
     ]
   },
   {
@@ -69245,8 +69179,7 @@ const defaultWords = [
   {
     "word": "relatively",
     "meanings": [
-      "상대적으로",
-      "상대적"
+      "상대적으로"
     ]
   },
   {
@@ -69574,10 +69507,8 @@ const defaultWords = [
   {
     "word": "slowly",
     "meanings": [
-      "차츰차츰",
       "서서히",
-      "띄엄띄엄",
-      "느리게"
+      "띄엄띄엄"
     ]
   },
   {
@@ -70789,8 +70720,7 @@ const defaultWords = [
     "meanings": [
       "미지의",
       "미지의 인물",
-      "알려지지 않은",
-      "미지"
+      "알려지지 않은"
     ]
   },
   {
@@ -71123,8 +71053,7 @@ const defaultWords = [
     "meanings": [
       "급경사",
       "교수형에 처할",
-      "걸린 것",
-      "급경사의"
+      "걸린 것"
     ]
   },
   {
@@ -71443,8 +71372,7 @@ const defaultWords = [
     "word": "inch",
     "meanings": [
       "인치의",
-      "조금씩 움직이다",
-      "인치"
+      "조금씩 움직이다"
     ]
   },
   {
@@ -71700,8 +71628,7 @@ const defaultWords = [
     "meanings": [
       "일상의",
       "일일",
-      "맨날",
-      "일상"
+      "맨날"
     ]
   },
   {
@@ -71847,8 +71774,7 @@ const defaultWords = [
     "meanings": [
       "폐",
       "폐쇄",
-      "결산",
-      "결산의"
+      "결산"
     ]
   },
   {
@@ -72029,7 +71955,6 @@ const defaultWords = [
     "word": "silent",
     "meanings": [
       "무언의",
-      "무언으로",
       "잠자코",
       "묵음의"
     ]
@@ -73100,8 +73025,7 @@ const defaultWords = [
     "word": "arab",
     "meanings": [
       "아라비아 사람의",
-      "아랍",
-      "아라비아사람"
+      "아랍"
     ]
   },
   {
@@ -73573,8 +73497,7 @@ const defaultWords = [
     "meanings": [
       "은행 업무",
       "은행업",
-      "근해 어업",
-      "은행업의"
+      "근해 어업"
     ]
   },
   {
@@ -74081,7 +74004,6 @@ const defaultWords = [
     "word": "feedback",
     "meanings": [
       "피드백의",
-      "피드백",
       "반향",
       "종합작용"
     ]
@@ -74593,7 +74515,7 @@ const defaultWords = [
     "word": "intelligent",
     "meanings": [
       "슬기롭다",
-      "총명한",
+      "현명한",
       "지능형"
     ]
   },
@@ -76298,7 +76220,7 @@ const defaultWords = [
       "점차로",
       "차츰",
       "점진적",
-      "점차"
+      "서서히"
     ]
   },
   {
@@ -76526,8 +76448,7 @@ const defaultWords = [
   {
     "word": "bronze",
     "meanings": [
-      "청동의",
-      "청동"
+      "청동의"
     ]
   },
   {
@@ -76957,8 +76878,7 @@ const defaultWords = [
     "meanings": [
       "비누투성이의",
       "세정제",
-      "비누의",
-      "비누"
+      "비누의"
     ]
   },
   {
@@ -78414,7 +78334,6 @@ const defaultWords = [
     "word": "caribbean",
     "meanings": [
       "카리브사람",
-      "카리브사람의",
       "카리브해"
     ]
   },
@@ -78723,7 +78642,6 @@ const defaultWords = [
     "word": "southwest",
     "meanings": [
       "남서",
-      "남서의",
       "남서에 있는",
       "남서부 지방"
     ]
@@ -79237,8 +79155,7 @@ const defaultWords = [
     "word": "fairy",
     "meanings": [
       "선녀",
-      "요정",
-      "요정의"
+      "요정"
     ]
   },
   {
@@ -79723,8 +79640,7 @@ const defaultWords = [
     "word": "northeast",
     "meanings": [
       "동북에서 온",
-      "동북에",
-      "동북"
+      "동북에"
     ]
   },
   {
@@ -80661,7 +80577,6 @@ const defaultWords = [
     "meanings": [
       "그에 따라서",
       "따라서",
-      "에 따라서",
       "그에 알맞게"
     ]
   },
@@ -81414,7 +81329,6 @@ const defaultWords = [
     "word": "celtic",
     "meanings": [
       "켈트 말",
-      "켈트말의",
       "켈트족의"
     ]
   },
@@ -81676,8 +81590,7 @@ const defaultWords = [
   {
     "word": "instrumental",
     "meanings": [
-      "조격의",
-      "조격"
+      "조격의"
     ]
   },
   {
@@ -81690,7 +81603,6 @@ const defaultWords = [
     "word": "centered",
     "meanings": [
       "중심이 있는",
-      "중심에 있는",
       "집중한"
     ]
   },
@@ -82114,8 +82026,7 @@ const defaultWords = [
     "word": "portable",
     "meanings": [
       "휴대용의",
-      "들고다닐 수 있는",
-      "휴대용"
+      "들고다닐 수 있는"
     ]
   },
   {
@@ -82803,7 +82714,6 @@ const defaultWords = [
     "meanings": [
       "체코 말",
       "체코사람",
-      "체코 사람의",
       "체코의"
     ]
   },
@@ -84078,7 +83988,6 @@ const defaultWords = [
     "word": "individually",
     "meanings": [
       "낱낱이",
-      "낱낱으로",
       "일일이"
     ]
   },
@@ -85466,9 +85375,7 @@ const defaultWords = [
   {
     "word": "rim",
     "meanings": [
-      "테두리",
       "가장자리",
-      "언저리",
       "테두리 쇠"
     ]
   },
@@ -86018,8 +85925,7 @@ const defaultWords = [
     "meanings": [
       "내륙",
       "오지로",
-      "발행 지불되는",
-      "내륙의"
+      "발행 지불되는"
     ]
   },
   {
@@ -86453,7 +86359,6 @@ const defaultWords = [
     "word": "libya",
     "meanings": [
       "리비아의",
-      "리비아",
       "리비아사람"
     ]
   },
@@ -89215,7 +89120,6 @@ const defaultWords = [
     "meanings": [
       "곡식의",
       "곡류의",
-      "곡류",
       "곡초의"
     ]
   },
@@ -90153,7 +90057,6 @@ const defaultWords = [
     "word": "downstairs",
     "meanings": [
       "아래층",
-      "아래층에",
       "아래층에 사는 사람들"
     ]
   },
@@ -90185,8 +90088,7 @@ const defaultWords = [
     "word": "voluntarily",
     "meanings": [
       "자유의사로",
-      "자발적으로",
-      "자발적"
+      "자발적으로"
     ]
   },
   {
@@ -90198,8 +90100,7 @@ const defaultWords = [
   {
     "word": "auburn",
     "meanings": [
-      "적갈색",
-      "적갈색의"
+      "적갈색"
     ]
   },
   {
@@ -90668,8 +90569,7 @@ const defaultWords = [
   {
     "word": "infrared",
     "meanings": [
-      "적외선",
-      "적외선의"
+      "적외선"
     ]
   },
   {
@@ -91006,7 +90906,6 @@ const defaultWords = [
     "meanings": [
       "수정",
       "석영",
-      "수정의",
       "석영이라함"
     ]
   },
@@ -91197,7 +91096,6 @@ const defaultWords = [
     "word": "titan",
     "meanings": [
       "타이탄의",
-      "타이탄",
       "거인"
     ]
   },
@@ -91887,8 +91785,7 @@ const defaultWords = [
     "word": "hawaiian",
     "meanings": [
       "하와이 사람",
-      "하와이 말",
-      "하와이 사람의"
+      "하와이 말"
     ]
   },
   {
@@ -92373,7 +92270,6 @@ const defaultWords = [
     "meanings": [
       "판지의",
       "명색뿐인",
-      "판지",
       "보드지"
     ]
   },
@@ -93194,7 +93090,6 @@ const defaultWords = [
     "meanings": [
       "코코아 음료",
       "코코아의",
-      "코코아",
       "코코아 색"
     ]
   },
@@ -93609,8 +93504,7 @@ const defaultWords = [
     "word": "universally",
     "meanings": [
       "전칭적으로",
-      "도처",
-      "도처에"
+      "도처"
     ]
   },
   {
@@ -95081,8 +94975,7 @@ const defaultWords = [
   {
     "word": "honduras",
     "meanings": [
-      "중앙 아메리카의 공화국의",
-      "중앙 아메리카의 공화국"
+      "중앙 아메리카의 공화국의"
     ]
   },
   {
@@ -96088,7 +95981,6 @@ const defaultWords = [
     "word": "fasting",
     "meanings": [
       "금식",
-      "금식의",
       "단식",
       "절식"
     ]
@@ -96420,8 +96312,7 @@ const defaultWords = [
     "word": "jamaican",
     "meanings": [
       "자메이카의",
-      "자메이카 사람의",
-      "자메이카 사람"
+      "자메이카 사람의"
     ]
   },
   {
@@ -96453,7 +96344,6 @@ const defaultWords = [
     "word": "colombian",
     "meanings": [
       "콜롬비아 사람의",
-      "콜롬비아 사람",
       "콜롬비아의"
     ]
   },
@@ -96759,8 +96649,7 @@ const defaultWords = [
   {
     "word": "upstream",
     "meanings": [
-      "상류에",
-      "상류"
+      "상류에"
     ]
   },
   {
@@ -98464,8 +98353,7 @@ const defaultWords = [
   {
     "word": "cameroon",
     "meanings": [
-      "카메룬",
-      "카메룬의"
+      "카메룬"
     ]
   },
   {
@@ -99299,8 +99187,7 @@ const defaultWords = [
     "word": "ethiopian",
     "meanings": [
       "에티오피아의",
-      "에티오피아 사람",
-      "에티오피아 사람의"
+      "에티오피아 사람"
     ]
   },
   {
@@ -99810,8 +99697,7 @@ const defaultWords = [
   {
     "word": "jurassic",
     "meanings": [
-      "주라기의",
-      "주라기"
+      "주라기의"
     ]
   },
   {
@@ -100084,7 +99970,6 @@ const defaultWords = [
     "meanings": [
       "절대적",
       "무조건",
-      "무조건의",
       "절대적인"
     ]
   },
@@ -101346,7 +101231,6 @@ const defaultWords = [
     "word": "cleanup",
     "meanings": [
       "4번 의",
-      "4번",
       "강타자의",
       "재고정리"
     ]
@@ -101503,8 +101387,7 @@ const defaultWords = [
     "word": "onward",
     "meanings": [
       "나아가서 =",
-      "전방에",
-      "전방으로"
+      "전방에"
     ]
   },
   {
@@ -102742,7 +102625,6 @@ const defaultWords = [
     "word": "canary",
     "meanings": [
       "카나리아 빛",
-      "카나리아 빛의",
       "카나리아",
       "여자가수"
     ]
@@ -102835,8 +102717,7 @@ const defaultWords = [
     "word": "chilean",
     "meanings": [
       "칠레사람의",
-      "칠레의",
-      "칠레사람"
+      "칠레의"
     ]
   },
   {
@@ -103707,7 +103588,6 @@ const defaultWords = [
     "word": "voodoo",
     "meanings": [
       "부두교",
-      "부두교의",
       "부두 도사"
     ]
   },
@@ -103859,8 +103739,7 @@ const defaultWords = [
     "word": "catalan",
     "meanings": [
       "카탈로니아 사람",
-      "카탈로니아의",
-      "카탈로니아 사람의"
+      "카탈로니아의"
     ]
   },
   {
@@ -104864,8 +104743,7 @@ const defaultWords = [
     "meanings": [
       "100년제",
       "100년세의",
-      "100년간의",
-      "100년간"
+      "100년간의"
     ]
   },
   {
@@ -105100,8 +104978,7 @@ const defaultWords = [
   {
     "word": "barefoot",
     "meanings": [
-      "맨발의",
-      "맨발로"
+      "맨발의"
     ]
   },
   {
@@ -108532,8 +108409,7 @@ const defaultWords = [
   {
     "word": "specialist",
     "meanings": [
-      "전문가",
-      "전문의"
+      "전문가"
     ]
   },
   {
